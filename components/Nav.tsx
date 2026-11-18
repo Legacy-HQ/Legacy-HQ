@@ -53,7 +53,7 @@ export function Nav() {
           <div className="pointer-events-auto flex items-center gap-3">
             <Link
               href="/contact"
-              className="rounded-[0_0.8rem_0_0.8rem] bg-white px-4 py-3 text-sm font-medium leading-none text-black transition-[border-radius] duration-500 hover:rounded-[0.8rem_0_0.8rem_0]"
+              className="whitespace-nowrap rounded-[0_0.8rem_0_0.8rem] bg-white px-4 py-3 text-sm font-medium leading-none text-black transition-[border-radius] duration-500 hover:rounded-[0.8rem_0_0.8rem_0] max-[359px]:hidden"
               onClick={() => setOpen(false)}
             >
               Start a project

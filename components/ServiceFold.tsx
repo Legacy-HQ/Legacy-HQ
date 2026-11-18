@@ -38,7 +38,7 @@ export function ServiceFold() {
                     </span>
                     <span>Service</span>
                   </p>
-                  <div className="grid gap-8 lg:mt-12 lg:grid-cols-[1fr_15rem] xl:grid-cols-[1fr_19rem]">
+                  <div className="grid gap-8 sm:grid-cols-[1fr_14rem] md:grid-cols-[1fr_17rem] lg:mt-12 lg:grid-cols-[1fr_15rem] xl:grid-cols-[1fr_19rem]">
                     <div>
                       <p className="display hidden text-[clamp(2.4rem,3.6vw,3.9rem)] lg:block">{service.name}</p>
                       <p className="max-w-md leading-relaxed text-muted lg:mt-6 lg:text-[1.05rem]">{service.body}</p>

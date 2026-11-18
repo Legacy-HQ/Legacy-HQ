@@ -231,13 +231,13 @@ export function Engage() {
         </Head>
         <div className="mt-14 grid gap-4 md:mt-20 lg:grid-cols-3">
           {engagements.map((item, i) => (
-            <Reveal key={item.name} delay={i * 90} className="h-full">
-              <Link href="/contact" className="card group flex h-full flex-col p-7 transition-colors duration-500 hover:bg-ink hover:text-paper md:p-9 [--r:2rem]">
+            <Reveal key={item.name} delay={i * 90} className="h-full min-w-0">
+              <Link href="/contact" className="card group flex h-full flex-col p-6 transition-colors sm:p-7 duration-500 hover:bg-ink hover:text-paper md:p-9 [--r:2rem]">
                 <p className="label flex justify-between opacity-60">
                   <span>0{i + 1}</span>
                   <span>{item.span}</span>
                 </p>
-                <h3 className="display mt-20 text-6xl md:mt-28 md:text-7xl">{item.name}</h3>
+                <h3 className="display mt-16 text-5xl sm:text-6xl md:mt-28 md:text-7xl">{item.name}</h3>
                 <p className="mt-5 max-w-sm leading-relaxed opacity-70">{item.body}</p>
                 <ul className="mt-8 border-t border-current/15 text-[0.95rem]">
                   {item.points.map((point) => (

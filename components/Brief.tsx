@@ -101,10 +101,10 @@ export function Brief() {
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
-        <a href={href} className="btn btn-ink !px-7 !py-5 !text-base">
+        <a href={href} className="btn btn-ink !py-5 !text-base max-sm:w-full sm:!px-7">
           Open in your mail app <span className="arrow">↗</span>
         </a>
-        <button type="button" className="btn btn-line !py-5" onClick={copy}>
+        <button type="button" className="btn btn-line !py-5 max-sm:w-full" onClick={copy}>
           {copied ? "Copied" : "Copy the brief"}
         </button>
         <p className="w-full text-sm text-muted" aria-live="polite">

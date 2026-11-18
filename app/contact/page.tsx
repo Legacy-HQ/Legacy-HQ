@@ -31,14 +31,14 @@ export default function ContactPage() {
       </h1>
 
       <div className="fade-up mt-14 grid gap-12 md:mt-20 lg:grid-cols-12" style={{ "--d": "400ms" } as React.CSSProperties}>
-        <div className="card p-6 md:p-10 lg:col-span-7">
+        <div className="card min-w-0 p-5 sm:p-6 md:p-10 lg:col-span-7">
           <Brief />
         </div>
 
-        <aside className="lg:col-span-4 lg:col-start-9">
-          <div className="zone-light leaf p-8 [--r:1.5rem]">
+        <aside className="min-w-0 lg:col-span-4 lg:col-start-9">
+          <div className="zone-light leaf p-6 sm:p-8 [--r:1.5rem]">
             <p className="label text-muted">Prefer plain email?</p>
-            <a href={`mailto:${site.email}`} className="display mt-3 block break-words text-2xl hover:opacity-60">
+            <a href={`mailto:${site.email}`} className="display mt-3 block text-xl [overflow-wrap:anywhere] hover:opacity-60 sm:text-2xl">
               {site.email}
             </a>
             <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted">

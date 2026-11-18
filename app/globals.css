@@ -96,11 +96,20 @@ body {
   outline-offset: 3px;
 }
 
+/* Very large and ultrawide screens: scale the whole layout up instead of leaving it small in the middle */
+@media (min-width: 2000px) {
+  html {
+    font-size: clamp(16px, 0.8vw, 28px);
+  }
+}
+
 .wrap {
   width: 100%;
   max-width: 96rem;
   margin-inline: auto;
-  padding-inline: clamp(1.25rem, 3.4vw, 3.25rem);
+  /* keeps content clear of notches and rounded corners in landscape */
+  padding-left: max(clamp(1.25rem, 3.4vw, 3.25rem), env(safe-area-inset-left));
+  padding-right: max(clamp(1.25rem, 3.4vw, 3.25rem), env(safe-area-inset-right));
 }
 
 .label {
@@ -126,6 +135,12 @@ body {
 }
 .mega {
   font-size: clamp(2.9rem, min(8.4vw, 12.4svh), 9.25rem);
+}
+@media (max-width: 639px) {
+  /* sized so the longest hero line fits narrow phones without wrapping */
+  .mega {
+    font-size: min(11.4vw, 3.4rem);
+  }
 }
 .h1 {
   font-size: clamp(2.7rem, 7.2vw, 7rem);
@@ -562,20 +577,28 @@ body {
 }
 
 /* ---------- Work index ---------- */
-.work-list:hover .work-row {
-  opacity: 0.32;
-}
-.work-list .work-row:hover {
-  opacity: 1;
-}
 .work-row {
   transition: opacity 0.4s ease;
 }
 .work-name {
   transition: transform 0.7s var(--ease-fold);
 }
-.work-row:hover .work-name {
-  transform: translateX(1.25rem);
+/* hover effects only where there is a real pointer, so they never stick on touch screens */
+@media (hover: hover) {
+  .work-list:hover .work-row {
+    opacity: 0.32;
+  }
+  .work-list .work-row:hover {
+    opacity: 1;
+  }
+  .work-row:hover .work-name {
+    transform: translateX(1.25rem);
+  }
+}
+@media (hover: none) {
+  .work-preview {
+    display: none;
+  }
 }
 .work-preview {
   opacity: 0;

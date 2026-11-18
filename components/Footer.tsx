@@ -36,7 +36,7 @@ export function Footer() {
             <Link href="/contact" className="btn btn-ink">
               Write a brief <span className="arrow">↗</span>
             </Link>
-            <a href={`mailto:${site.email}`} className="text-lg underline decoration-1 underline-offset-[6px] transition-opacity hover:opacity-60">
+            <a href={`mailto:${site.email}`} className="text-lg underline decoration-1 underline-offset-[6px] [overflow-wrap:anywhere] transition-opacity hover:opacity-60">
               {site.email}
             </a>
           </div>
