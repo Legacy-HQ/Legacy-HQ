@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Curiofold">
+  <title>Curiofold</title>
+  <rect width="512" height="512" rx="116" fill="#120E2E"/>
+  <g transform="translate(96 96) scale(1.6)">
+    <path d="M177.61 67.85 L132.15 22.39 L119.13 53.81 L146.19 80.87Z" fill="#FF9A6E" stroke="#FF9A6E" stroke-width="0.6" stroke-linejoin="round"/>
+    <path d="M132.15 22.39 L67.85 22.39 L80.87 53.81 L119.13 53.81Z" fill="#F7688A" stroke="#F7688A" stroke-width="0.6" stroke-linejoin="round"/>
+    <path d="M67.85 22.39 L22.39 67.85 L53.81 80.87 L80.87 53.81Z" fill="#C458E6" stroke="#C458E6" stroke-width="0.6" stroke-linejoin="round"/>
+    <path d="M22.39 67.85 L22.39 132.15 L53.81 119.13 L53.81 80.87Z" fill="#8F5BFA" stroke="#8F5BFA" stroke-width="0.6" stroke-linejoin="round"/>
+    <path d="M22.39 132.15 L67.85 177.61 L80.87 146.19 L53.81 119.13Z" fill="#7050F0" stroke="#7050F0" stroke-width="0.6" stroke-linejoin="round"/>
+    <path d="M67.85 177.61 L132.15 177.61 L119.13 146.19 L80.87 146.19Z" fill="#5A43DB" stroke="#5A43DB" stroke-width="0.6" stroke-linejoin="round"/>
+    <path d="M132.15 177.61 L177.61 132.15 L146.19 119.13 L119.13 146.19Z" fill="#4634B8" stroke="#4634B8" stroke-width="0.6" stroke-linejoin="round"/>
+    <path d="M180.9 100.0 L165.86 103.96 L161.9 119.0 L157.94 103.96 L142.9 100.0 L157.94 96.04 L161.9 81.0 L165.86 96.04Z" fill="#FFB547"/>
+  </g>
+</svg>
