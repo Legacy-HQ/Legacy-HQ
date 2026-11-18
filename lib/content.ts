@@ -7,14 +7,12 @@ export const site = {
   description:
     "Curiofold is a design and engineering studio. Branding, product UI/UX, full-stack engineering, landing pages and websites, made by one team.",
   status: "Booking new projects",
-  // PLACEHOLDER: confirm the real contact address, domain and social links.
-  email: "hello@curiofold.com",
+  // PLACEHOLDER: confirm the live domain (url).
+  email: "curiofoldhq@gmail.com",
   url: "https://curiofold.com",
   socials: [
-    { label: "Instagram", href: "#" },
-    { label: "LinkedIn", href: "#" },
-    { label: "X", href: "#" },
-    { label: "Dribbble", href: "#" },
+    { label: "Instagram", href: "https://www.instagram.com/curiofoldhq" },
+    { label: "X", href: "https://x.com/curiofold" },
   ],
 };
 

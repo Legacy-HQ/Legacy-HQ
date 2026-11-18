@@ -81,7 +81,7 @@ export function Footer() {
             <Column title="Elsewhere">
               {site.socials.map((item) => (
                 <li key={item.label}>
-                  <a href={item.href} className={link}>
+                  <a href={item.href} target="_blank" rel="noopener noreferrer" className={link}>
                     {item.label}
                   </a>
                 </li>
