@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Inter_Tight } from "next/font/google";
-import { Cta, Footer } from "@/components/Footer";
+import { Bricolage_Grotesque, Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Footer } from "@/components/Footer";
 import { Intro } from "@/components/Intro";
 import { Nav } from "@/components/Nav";
+import { Smooth } from "@/components/Smooth";
 import { site } from "@/lib/content";
 import "./globals.css";
 
@@ -16,9 +17,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const interTight = Inter_Tight({
-  variable: "--font-inter-tight",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+  style: "italic",
 });
 
 export const metadata: Metadata = {
@@ -35,24 +43,24 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#e9e5da",
+  themeColor: "#0f0f0f",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${interTight.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable} ${instrumentSerif.variable} antialiased`}
     >
       <body className="min-h-screen overflow-x-clip">
         <noscript>
-          <style>{`.reveal{opacity:1;transform:none}`}</style>
+          <style>{`.reveal{opacity:1;transform:none}.ink-word{opacity:1}`}</style>
         </noscript>
+        <Smooth />
         <Intro />
         <div className="progress" aria-hidden="true" />
         <Nav />
         <div id="top">{children}</div>
-        <Cta />
         <Footer />
       </body>
     </html>

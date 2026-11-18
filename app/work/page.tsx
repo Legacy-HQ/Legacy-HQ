@@ -8,21 +8,29 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
   return (
-    <main className="wrap pb-24 pt-16 md:pb-32 md:pt-24">
-      <div className="mx-auto max-w-3xl text-center">
-        <p className="label fade-up flex items-center justify-center text-muted">
-          <span className="pip" /> Work
-        </p>
-        <h1 className="display h1 mt-6">
-          <span className="line">
-            <span>Latest projects</span>
-          </span>
-        </h1>
-        <p className="lede fade-up mx-auto mt-6 max-w-xl" style={{ "--d": "300ms" } as React.CSSProperties}>
-          A selection of studio concepts across product design, engineering, websites and branding.
+    <main className="wrap pb-28 pt-36 md:pb-40 md:pt-48">
+      <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+        <div className="lg:col-span-8">
+          <p className="label fade-up flex items-center text-muted">
+            <span className="pip" /> Work — Index
+          </p>
+          <h1 className="display h1 mt-6">
+            <span className="line">
+              <span>A cabinet of</span>
+            </span>
+            <span className="line">
+              <span style={{ "--d": "110ms" } as React.CSSProperties}>
+                <em>curiosities.</em>
+              </span>
+            </span>
+          </h1>
+        </div>
+        <p className="lede fade-up lg:col-span-4 lg:pb-4" style={{ "--d": "350ms" } as React.CSSProperties}>
+          Studio concepts across product design, engineering, websites and branding. Real client work will take their
+          place.
         </p>
       </div>
-      <div className="fade-up mt-12" style={{ "--d": "400ms" } as React.CSSProperties}>
+      <div className="fade-up mt-14 md:mt-20" style={{ "--d": "450ms" } as React.CSSProperties}>
         <WorkGrid />
       </div>
     </main>

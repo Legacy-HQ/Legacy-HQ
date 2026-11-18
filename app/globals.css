@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 :root {
   /* Curiofold brand palette */
@@ -11,14 +12,14 @@
   --cf-warm-limestone: #e9e5da;
   --cf-deep-ink: #11110f;
 
-  /* Semantic tokens. .zone-dark swaps them, so components never hard-code a theme. */
-  --paper: var(--cf-warm-limestone);
-  --paper-2: var(--cf-alabaster-white);
-  --ink: var(--cf-deep-ink);
-  --muted: #6a6961;
-  --line: rgb(17 17 15 / 0.12);
-  --chip: var(--cf-warm-limestone);
-  --r: 1.1rem;
+  /* Semantic tokens. The site is dark by default; .zone-light and .zone-bone swap them. */
+  --paper: var(--cf-matte-obsidian);
+  --paper-2: #161a1a;
+  --ink: var(--cf-alabaster-white);
+  --muted: #98978f;
+  --line: rgb(245 243 238 / 0.13);
+  --chip: rgb(245 243 238 / 0.07);
+  --r: 1.25rem;
   /* Hero entrances wait for the intro; Intro.tsx zeroes this once it has played. */
   --intro: 1150ms;
 }
@@ -27,17 +28,26 @@
   --paper: var(--cf-matte-obsidian);
   --paper-2: #161a1a;
   --ink: var(--cf-alabaster-white);
-  --muted: #9b9a92;
-  --line: rgb(245 243 238 / 0.1);
-  --chip: #0a0d0d;
+  --muted: #98978f;
+  --line: rgb(245 243 238 / 0.13);
+  --chip: rgb(245 243 238 / 0.07);
   background: var(--paper);
   color: var(--ink);
 }
-.zone-surface {
+.zone-light,
+.zone-bone {
+  --paper: var(--cf-warm-limestone);
+  --paper-2: var(--cf-alabaster-white);
+  --ink: var(--cf-deep-ink);
+  --muted: #68675f;
+  --line: rgb(17 17 15 / 0.15);
+  --chip: rgb(17 17 15 / 0.06);
+  background: var(--paper);
+  color: var(--ink);
+}
+.zone-bone {
   --paper: var(--cf-alabaster-white);
   --paper-2: var(--cf-warm-limestone);
-  --chip: var(--cf-alabaster-white);
-  background: var(--paper);
 }
 
 @theme inline {
@@ -52,10 +62,9 @@
   --color-charcoal: #1d2324;
   --color-alabaster: #f5f3ee;
   --color-limestone: #e9e5da;
-  --color-go: #6fd39a;
+  --color-go: #7fd6a4;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-inter-tight);
   --ease-fold: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -67,8 +76,8 @@
 
 html {
   overflow-x: clip;
-  scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
+  scroll-padding-top: 5rem;
+  background: var(--cf-matte-obsidian);
 }
 
 body {
@@ -78,8 +87,8 @@ body {
 }
 
 ::selection {
-  background: #8d8c84;
-  color: #0f0f0f;
+  background: var(--cf-alabaster-white);
+  color: var(--cf-matte-obsidian);
 }
 
 :focus-visible {
@@ -89,44 +98,49 @@ body {
 
 .wrap {
   width: 100%;
-  max-width: 78rem;
+  max-width: 96rem;
   margin-inline: auto;
-  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  padding-inline: clamp(1.25rem, 3.4vw, 3.25rem);
 }
 
 .label {
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.7rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
-/* Headlines: tight bold grotesk. <em> sets the quieter half of a two-tone line. */
+/* Headlines: a characterful grotesk; <em> switches one word to an italic serif. */
 .display {
-  font-family: var(--font-inter-tight), var(--font-geist-sans), sans-serif;
-  font-weight: 600;
-  line-height: 1.02;
-  letter-spacing: -0.032em;
-  text-wrap: balance;
+  font-family: var(--font-bricolage), var(--font-geist-sans), sans-serif;
+  font-weight: 500;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
 }
-.display em {
-  font-style: normal;
-  color: var(--muted);
+.display em,
+.serif {
+  font-family: var(--font-instrument-serif), serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+}
+.mega {
+  font-size: clamp(2.9rem, min(8.4vw, 12.4svh), 9.25rem);
 }
 .h1 {
-  font-size: clamp(2.5rem, 5.1vw, 4.4rem);
+  font-size: clamp(2.7rem, 7.2vw, 7rem);
 }
 .h2 {
-  font-size: clamp(2rem, 3.7vw, 3.1rem);
+  font-size: clamp(2.3rem, 5.4vw, 5rem);
 }
 .h3 {
-  font-size: clamp(1.35rem, 2vw, 1.7rem);
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  font-size: clamp(1.5rem, 2.3vw, 2.1rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
 }
 .lede {
   color: var(--muted);
-  font-size: clamp(1.02rem, 1.3vw, 1.18rem);
+  font-size: clamp(1.02rem, 1.25vw, 1.2rem);
   line-height: 1.55;
   text-wrap: pretty;
 }
@@ -139,7 +153,7 @@ body {
   display: inline-block;
   width: 0.6em;
   height: 0.6em;
-  margin-right: 0.6em;
+  margin-right: 0.7em;
   background: currentColor;
   border-radius: 0 70% 0 70%;
   flex: none;
@@ -154,59 +168,69 @@ body {
 .tag {
   display: inline-flex;
   align-items: center;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   line-height: 1;
   padding: 0.5rem 0.65rem;
-  background: var(--chip);
-  border-radius: 0 0.4rem 0 0.4rem;
+  border: 1px solid var(--line);
+  border-radius: 99px;
   white-space: nowrap;
 }
 
+/* Buttons fill from the bottom-left corner on hover */
 .btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 1rem 1.5rem;
-  font-weight: 600;
+  gap: 0.7rem;
+  padding: 1.05rem 1.6rem;
+  font-weight: 500;
   font-size: 0.95rem;
   line-height: 1;
-  letter-spacing: -0.01em;
   white-space: nowrap;
-  border-radius: 0 0.8rem 0 0.8rem;
-  transition:
-    border-radius 0.5s var(--ease-fold),
-    background 0.25s ease,
-    color 0.25s ease,
-    opacity 0.25s ease;
+  border-radius: 0 1rem 0 1rem;
+  transition: color 0.45s var(--ease-fold);
 }
-.btn:hover {
-  border-radius: 0.8rem 0 0.8rem 0;
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  transform: translateY(101%);
+  transition: transform 0.55s var(--ease-fold);
+}
+.btn:hover::before {
+  transform: none;
 }
 .btn-ink {
   background: var(--ink);
   color: var(--paper);
 }
-.btn-soft {
-  background: var(--paper-2);
-  color: var(--ink);
-  box-shadow: inset 0 0 0 1px var(--line);
+.btn-ink::before {
+  background: color-mix(in srgb, var(--ink) 78%, var(--paper));
 }
 .btn-line {
   box-shadow: inset 0 0 0 1px var(--line);
 }
-.btn-line:hover {
-  box-shadow: inset 0 0 0 1px var(--ink);
+.btn-line::before {
+  background: var(--ink);
 }
-.btn .arrow {
-  transition: transform 0.35s var(--ease-fold);
+.btn-line:hover {
+  color: var(--paper);
+}
+.arrow {
+  display: inline-block;
+  transition: transform 0.45s var(--ease-fold);
 }
 .btn:hover .arrow,
 .group:hover .arrow {
-  transform: translateX(4px);
+  transform: translate(3px, -3px);
 }
 
 /* Scroll progress */
@@ -215,7 +239,7 @@ body {
   inset: 0 0 auto 0;
   height: 2px;
   z-index: 70;
-  background: var(--cf-alabaster-white);
+  background: #fff;
   mix-blend-mode: difference;
   transform-origin: left;
   transform: scaleX(0);
@@ -235,10 +259,10 @@ body {
 /* Scroll reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(28px);
   transition:
-    opacity 0.9s var(--ease-fold),
-    transform 0.9s var(--ease-fold);
+    opacity 1s var(--ease-fold),
+    transform 1s var(--ease-fold);
   transition-delay: var(--d, 0ms);
 }
 .reveal.in {
@@ -249,13 +273,13 @@ body {
 .line {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.14em;
-  margin-bottom: -0.14em;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
 }
 .line > span {
   display: block;
-  transform: translateY(110%);
-  animation: rise 1.1s var(--ease-fold) forwards;
+  transform: translateY(115%);
+  animation: rise 1.2s var(--ease-fold) forwards;
   animation-delay: calc(var(--d, 0ms) + var(--intro, 0ms));
 }
 @keyframes rise {
@@ -300,7 +324,6 @@ body {
   --ux: 1;
   --uy: 1;
 }
-/* Pieces part slightly when a parent .group is hovered */
 .mark-live path {
   transition: transform 0.7s var(--ease-fold);
 }
@@ -315,10 +338,10 @@ body {
   z-index: 90;
   display: grid;
   place-items: center;
-  background: var(--cf-matte-obsidian);
+  background: var(--cf-void-obsidian);
   color: var(--cf-warm-ivory);
   pointer-events: none;
-  animation: intro-lift 0.75s cubic-bezier(0.7, 0, 0.2, 1) 0.95s forwards;
+  animation: intro-lift 0.8s cubic-bezier(0.7, 0, 0.2, 1) 0.95s forwards;
 }
 .intro .mark {
   width: min(20vw, 6.5rem);
@@ -341,9 +364,229 @@ body {
 }
 @keyframes intro-lift {
   to {
-    transform: translateY(-100%);
+    clip-path: inset(0 0 100% 0);
     visibility: hidden;
   }
+}
+
+/* The folded field canvas; the gradient shows until (or unless) WebGL draws */
+.field {
+  background:
+    linear-gradient(118deg, transparent 38%, #1d2324 38%, #141919 62%, transparent 62%),
+    linear-gradient(160deg, #0a1010, #050b0b);
+}
+
+.spin {
+  animation: spin 22s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.orbit {
+  transform-origin: 50% 50%;
+  transform-box: view-box;
+  animation: spin var(--t, 20s) linear infinite;
+}
+
+/* Manifesto: words ink in as you scroll */
+.ink-word {
+  opacity: clamp(0.16, calc(var(--p, 0) * var(--n) - var(--i) + 1), 1);
+  transition: opacity 0.25s linear;
+}
+
+/* ---------- Services: a folded sheet of panels ---------- */
+.fold-p {
+  position: relative;
+  border-top: 1px solid var(--line);
+}
+.fold-p:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.fold-head {
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1.4rem 0;
+  text-align: left;
+}
+.fold-plus {
+  margin-left: auto;
+  transition: transform 0.5s var(--ease-fold);
+}
+.fold-p[data-open="true"] .fold-plus {
+  transform: rotate(45deg);
+}
+.fold-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.7s var(--ease-fold);
+}
+.fold-p[data-open="true"] .fold-body {
+  grid-template-rows: 1fr;
+}
+.fold-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+@media (min-width: 1024px) {
+  .fold-row {
+    display: flex;
+    height: 43rem;
+    container-type: inline-size;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .fold-p {
+    flex: 1 1 0;
+    min-width: 0;
+    overflow: hidden;
+    border: 0;
+    border-left: 1px solid var(--line);
+    transition: flex-grow 0.9s var(--ease-fold);
+    /* alternate lit and shadowed faces, like a sheet folded into a zigzag */
+    background: linear-gradient(90deg, #171c1c, #0b0e0e);
+  }
+  .fold-p:last-child {
+    border-bottom: 0;
+    border-right: 1px solid var(--line);
+  }
+  .fold-p:nth-child(even) {
+    background: linear-gradient(90deg, #090c0c, #131717);
+  }
+  .fold-p[data-open="true"] {
+    flex-grow: 7.5;
+    background: linear-gradient(90deg, #1b2121, #111515);
+  }
+  .fold-head {
+    position: absolute;
+    inset: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.6rem 0;
+    transition: opacity 0.4s ease;
+  }
+  .fold-head .fold-title {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: nowrap;
+  }
+  .fold-plus {
+    margin: 0;
+    order: -1;
+    display: none;
+  }
+  .fold-p[data-open="true"] .fold-head {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .fold-body {
+    position: absolute;
+    inset: 0;
+    display: block;
+    pointer-events: none;
+  }
+  .fold-inner {
+    width: calc(100cqw * 7.5 / 12.5);
+    height: 100%;
+    opacity: 0;
+    transform: translateX(1.5rem);
+    transition:
+      opacity 0.35s ease,
+      transform 0.9s var(--ease-fold);
+  }
+  .fold-p[data-open="true"] .fold-body {
+    pointer-events: auto;
+  }
+  .fold-p[data-open="true"] .fold-inner {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0.25s;
+  }
+}
+
+/* Figure plates: small line demos in the service panels */
+.plate {
+  color: var(--ink);
+}
+.plate * {
+  vector-effect: non-scaling-stroke;
+}
+.dash {
+  animation: dash 1.6s linear infinite;
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+.type-line {
+  transform-box: fill-box;
+  transform-origin: left;
+  animation: type-line 4.5s steps(14, jump-none) infinite;
+  animation-delay: calc(var(--i) * 0.45s);
+}
+@keyframes type-line {
+  0% {
+    transform: scaleX(0);
+  }
+  12%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+.toggle-knob {
+  animation: toggle 3.2s var(--ease-fold) infinite alternate;
+}
+@keyframes toggle {
+  0%,
+  35% {
+    transform: translateX(0);
+  }
+  65%,
+  100% {
+    transform: translateX(14px);
+  }
+}
+.draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 2.4s var(--ease-fold) 0.2s;
+}
+.in .draw {
+  stroke-dashoffset: 0;
+}
+
+/* ---------- Work index ---------- */
+.work-list:hover .work-row {
+  opacity: 0.32;
+}
+.work-list .work-row:hover {
+  opacity: 1;
+}
+.work-row {
+  transition: opacity 0.4s ease;
+}
+.work-name {
+  transition: transform 0.7s var(--ease-fold);
+}
+.work-row:hover .work-name {
+  transform: translateX(1.25rem);
+}
+.work-preview {
+  opacity: 0;
+  scale: 0.86;
+  transition:
+    opacity 0.35s ease,
+    scale 0.6s var(--ease-fold);
+}
+.work-preview[data-show="true"] {
+  opacity: 1;
+  scale: 1;
 }
 
 /* ---------- Mock interfaces (project visuals) ---------- */
@@ -354,8 +597,6 @@ body {
   font-size: clamp(5px, 1.22cqw, 15px);
   line-height: 1.3;
 }
-
-/* Wireframe rendering of any mock: boxes outlined, text greeked */
 .wire * {
   background-color: transparent !important;
   background-image: none !important;
@@ -383,14 +624,8 @@ body {
     linear-gradient(90deg, rgb(245 243 238 / 0.05) 1px, transparent 1px);
   background-size: 2.5% 4%;
 }
-
-/* Hero split: wireframe on the left of the handle, shipped product on the right */
-.split {
-  --split: 50%;
-}
 .split[data-auto="true"] {
   animation: split-sweep 7s cubic-bezier(0.6, 0, 0.3, 1) infinite alternate;
-  animation-delay: var(--intro, 0ms);
 }
 @keyframes split-sweep {
   from {
@@ -407,61 +642,6 @@ body {
   left: var(--split);
 }
 
-/* ---------- Isometric service illustrations ---------- */
-.iso {
-  color: var(--ink);
-  --iso-fill: var(--paper-2);
-  overflow: visible;
-}
-.iso-l {
-  transform: translateY(calc(var(--z, 0) * var(--lift, 0) * -1px));
-  transition: transform 0.8s var(--ease-fold);
-}
-.svc:hover {
-  --lift: 9;
-}
-.svc {
-  transition:
-    border-color 0.3s ease,
-    background 0.3s ease;
-}
-.svc:hover {
-  border-color: color-mix(in srgb, var(--ink) 28%, transparent);
-}
-.iso-grid {
-  background-image:
-    linear-gradient(30deg, transparent 49.6%, var(--line) 49.6%, var(--line) 50.4%, transparent 50.4%),
-    linear-gradient(-30deg, transparent 49.6%, var(--line) 49.6%, var(--line) 50.4%, transparent 50.4%);
-  background-size: 4.5rem 2.6rem;
-  mask-image: radial-gradient(ellipse at center, #000 20%, transparent 72%);
-}
-.iso-dash {
-  animation: dash 1.6s linear infinite;
-}
-@keyframes dash {
-  to {
-    stroke-dashoffset: -12;
-  }
-}
-
-/* Marquee */
-.marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 40s linear infinite;
-}
-.marquee:hover {
-  animation-play-state: paused;
-}
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
-  }
-}
-.fade-x {
-  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-}
-
 .pulse {
   position: relative;
 }
@@ -475,39 +655,29 @@ body {
 }
 @keyframes pulse {
   to {
-    transform: scale(2.6);
+    transform: scale(2.8);
     opacity: 0;
   }
 }
 
-.playhead {
-  left: 0;
-  animation: playhead 7s linear infinite;
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 46s linear infinite;
 }
-@keyframes playhead {
+@keyframes marquee {
   to {
-    left: 100%;
-  }
-}
-.orbit {
-  transform-origin: 50% 50%;
-  transform-box: view-box;
-  animation: spin var(--t, 20s) linear infinite;
-}
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
+    transform: translateX(-50%);
   }
 }
 
 /* Chips used in filters and the brief builder */
 .chip {
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 0.7rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.75rem 1.1rem;
   box-shadow: inset 0 0 0 1px var(--line);
-  border-radius: 0 0.7rem 0 0.7rem;
+  border-radius: 0 0.8rem 0 0.8rem;
   transition:
     background 0.3s ease,
     color 0.3s ease,
@@ -520,9 +690,9 @@ body {
 .chip[aria-pressed="true"] {
   background: var(--ink);
   color: var(--paper);
-  border-radius: 0.7rem 0 0.7rem 0;
+  border-radius: 0.8rem 0 0.8rem 0;
 }
-.field {
+.input {
   width: 100%;
   background: transparent;
   border-bottom: 1px solid var(--line);
@@ -531,11 +701,11 @@ body {
   outline: none;
   transition: border-color 0.3s ease;
 }
-.field:focus {
+.input:focus {
   border-color: var(--ink);
 }
-.field::placeholder {
-  color: color-mix(in srgb, var(--muted) 70%, transparent);
+.input::placeholder {
+  color: color-mix(in srgb, var(--muted) 75%, transparent);
 }
 
 /* FAQ */
@@ -547,26 +717,18 @@ details > summary::-webkit-details-marker {
   display: none;
 }
 details .faq-icon {
-  transition: transform 0.4s var(--ease-fold);
+  transition: transform 0.5s var(--ease-fold);
 }
 details[open] .faq-icon {
-  transform: rotate(180deg);
+  transform: rotate(45deg);
 }
 details[open] .faq-a {
   animation: fade-up 0.5s var(--ease-fold);
 }
 
-.outline-word {
-  color: transparent;
-  -webkit-text-stroke: 1px rgb(245 243 238 / 0.14);
-}
-
 @media (prefers-reduced-motion: reduce) {
   :root {
     --intro: 0ms;
-  }
-  html {
-    scroll-behavior: auto;
   }
   *,
   *::before,
@@ -582,5 +744,8 @@ details[open] .faq-a {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+  .ink-word {
+    opacity: 1;
   }
 }

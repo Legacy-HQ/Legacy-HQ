@@ -28,7 +28,7 @@ export default async function ProjectPage({ params }: PageProps<"/work/[slug]">)
 
   return (
     <main>
-      <section className="wrap pt-12 md:pt-16">
+      <section className="wrap pt-32 md:pt-40">
         <Link href="/work" className="fade-up inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-ink">
           ← All work
         </Link>
@@ -36,7 +36,7 @@ export default async function ProjectPage({ params }: PageProps<"/work/[slug]">)
           <div className="lg:col-span-7">
             <ul className="fade-up flex flex-wrap gap-1.5">
               {[...project.sectors, "Studio concept"].map((tag) => (
-                <li key={tag} className="tag !bg-paper-2">
+                <li key={tag} className="tag">
                   {tag}
                 </li>
               ))}
@@ -61,7 +61,7 @@ export default async function ProjectPage({ params }: PageProps<"/work/[slug]">)
           ))}
         </dl>
 
-        <div className="fade-up mt-10 overflow-hidden rounded-[0_1.75rem_0_1.75rem] border border-line shadow-[0_3rem_6rem_-3rem_rgb(17_17_15/0.5)]" style={d(500)}>
+        <div className="fade-up mt-10 overflow-hidden rounded-[0_1.75rem_0_1.75rem] border border-line shadow-[0_3rem_6rem_-3rem_rgb(0_0_0/0.7)]" style={d(500)}>
           <ProjectVisual slug={project.slug} />
         </div>
       </section>
@@ -109,7 +109,7 @@ export default async function ProjectPage({ params }: PageProps<"/work/[slug]">)
         </Reveal>
       </section>
 
-      <Link href={`/work/${next.slug}`} className="zone-dark group block">
+      <Link href={`/work/${next.slug}`} className="zone-light group block">
         <div className="wrap grid items-center gap-8 py-16 md:grid-cols-2 md:py-20">
           <div>
             <p className="label text-muted">Next project</p>

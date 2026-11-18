@@ -6,14 +6,14 @@ export const site = {
   tagline: "Design and engineering studio",
   description:
     "Curiofold is a design and engineering studio. Branding, product UI/UX, full-stack engineering, landing pages and websites, made by one team.",
-  announcement: "Now booking new projects",
+  status: "Booking new projects",
   // PLACEHOLDER: confirm the real contact address, domain and social links.
   email: "hello@curiofold.com",
   url: "https://curiofold.com",
   socials: [
-    { label: "X", href: "#" },
-    { label: "LinkedIn", href: "#" },
     { label: "Instagram", href: "#" },
+    { label: "LinkedIn", href: "#" },
+    { label: "X", href: "#" },
     { label: "Dribbble", href: "#" },
   ],
 };
@@ -22,68 +22,74 @@ export const nav = [
   { label: "Work", href: "/work" },
   { label: "Services", href: "/#services" },
   { label: "Process", href: "/#process" },
-  { label: "Compare", href: "/#compare" },
   { label: "FAQ", href: "/#faq" },
 ];
 
-export const sectors = ["SaaS", "Fintech", "AI products", "Developer tools", "Consumer apps", "E-commerce"];
+export const manifesto =
+  "Most products are made flat. Strategy hands to design, design hands to code, and the idea loses a little shape at every pass. We keep hold of the whole sheet. One team folds brand, interface and engineering together, until the thing stands up on its own.";
 
-export const services = [
-  {
-    id: "branding",
-    name: "Branding",
-    body: "We build complete brand identities: logo, colour, typography and a visual language that stays consistent everywhere it appears. Everything is handed over in a brand portal your whole team can open and use the same day.",
-    gets: ["Logo suite and usage rules", "Colour and type system", "Brand portal with every asset"],
-    tags: ["Logo", "Colour systems", "Typography", "Visual language", "Brand portal", "Pitch decks", "Figma", "Illustrator"],
-  },
-  {
-    id: "product",
-    name: "Product UI/UX",
-    body: "Confusing products lose people before they reach the good part. We handle research, flows and precise interface design in Figma, made simple for the people using it and unambiguous for the engineers building it.",
-    gets: ["Research and user flows", "High-fidelity screens and prototypes", "A design system engineers can build from"],
-    tags: ["Figma", "Web apps", "Mobile apps", "Dashboards", "Design systems", "Prototypes", "Desktop apps"],
-  },
-  {
-    id: "engineering",
-    name: "Full-stack product engineering",
-    body: "We take your product from Figma to production. Faithful implementation, clean integration with your backend, and typed, tested code written by the same team that designed it. No shortcuts and nothing lost in translation.",
-    gets: ["Front end built exactly as designed", "APIs, auth, data and integrations", "Clean repository and documentation"],
-    tags: ["Next.js", "TypeScript", "React", "React Native", "Node.js", "PostgreSQL", "Supabase", "Swift", "Redis"],
-  },
-  {
-    id: "landing",
-    name: "Landing pages",
-    body: "Pages built to turn attention into action. Custom visuals, animation and interaction around one clear message, for launches, waitlists and campaigns where a template would undersell the product.",
-    gets: ["Messaging structure and copy direction", "Custom visuals and motion", "Fast, measurable build"],
-    tags: ["Figma", "Framer", "Webflow", "Next.js", "Rive", "Lottie", "Waitlist pages", "Product pages", "A/B variants"],
-  },
-  {
-    id: "websites",
-    name: "Full websites",
-    body: "Custom websites in Framer, Webflow or Next.js, chosen for what your team needs to run afterwards. Every layout, animation and line of code is made from scratch for your brand, on a CMS you can update without us.",
-    gets: ["Sitemap and page system", "CMS your team can run", "SEO, performance and analytics set up"],
-    tags: ["Framer", "Webflow", "Next.js", "Sanity", "CMS websites", "Marketing websites", "SEO", "Analytics"],
-  },
-  {
-    id: "motion",
-    name: "Motion and video",
-    body: "Motion gives a brand its own way of moving. We animate logos, interfaces and explainers, and edit video for launches and social, finished with colour, sound and exports for every platform.",
-    gets: ["Logo and interface animation", "Product films and explainers", "Edits cut for every format"],
-    tags: ["After Effects", "Rive", "Lottie", "Logo animation", "Explainers", "Video editing", "Reels and shorts"],
-  },
-] as const;
-
-export type ServiceId = (typeof services)[number]["id"];
-
-export const figures = [
+export const principles = [
   { figure: "6", label: "Disciplines under one roof" },
   { figure: "1", label: "Team, from brief to launch" },
   { figure: "0", label: "Handoffs between design and code" },
   { figure: "100%", label: "Of files and code handed over" },
 ];
 
+export const services = [
+  {
+    id: "branding",
+    name: "Branding",
+    figure: "Identity construction",
+    body: "Complete brand identities: logo, colour, typography and a visual language that stays consistent everywhere it appears. Handed over in a brand portal your whole team can open and use the same day.",
+    gets: ["Logo suite and usage rules", "Colour and type system", "Brand portal with every asset"],
+    tags: ["Logo", "Colour", "Typography", "Guidelines", "Brand portal", "Figma", "Illustrator"],
+  },
+  {
+    id: "product",
+    name: "Product UI/UX",
+    figure: "Component states",
+    body: "Confusing products lose people before they reach the good part. We handle research, flows and precise interface design in Figma, simple for the people using it and unambiguous for the engineers building it.",
+    gets: ["Research and user flows", "High-fidelity screens and prototypes", "A design system engineers can build from"],
+    tags: ["Figma", "Web apps", "Mobile apps", "Dashboards", "Design systems", "Prototypes"],
+  },
+  {
+    id: "engineering",
+    name: "Full-stack product engineering",
+    figure: "Build output",
+    body: "We take your product from Figma to production. Faithful implementation, clean integration with your backend, and typed, tested code written by the same team that designed it. Nothing lost in translation.",
+    gets: ["Front end built exactly as designed", "APIs, auth, data and integrations", "Clean repository and documentation"],
+    tags: ["Next.js", "TypeScript", "React", "React Native", "Node.js", "PostgreSQL", "Supabase"],
+  },
+  {
+    id: "landing",
+    name: "Landing pages",
+    figure: "Page anatomy",
+    body: "Pages built to turn attention into action. Custom visuals, animation and interaction around one clear message, for launches, waitlists and campaigns where a template would undersell the product.",
+    gets: ["Messaging structure and copy direction", "Custom visuals and motion", "Fast, measurable build"],
+    tags: ["Figma", "Framer", "Webflow", "Next.js", "Rive", "Lottie", "A/B variants"],
+  },
+  {
+    id: "websites",
+    name: "Full websites",
+    figure: "Site map",
+    body: "Custom websites in Framer, Webflow or Next.js, chosen for what your team needs to run afterwards. Every layout, animation and line of code is made from scratch, on a CMS you can update without us.",
+    gets: ["Sitemap and page system", "CMS your team can run", "SEO, performance and analytics set up"],
+    tags: ["Framer", "Webflow", "Next.js", "Sanity", "CMS", "SEO", "Analytics"],
+  },
+  {
+    id: "motion",
+    name: "Motion and video",
+    figure: "Easing curve",
+    body: "Motion gives a brand its own way of moving. We animate logos, interfaces and explainers, and edit video for launches and social, finished with colour, sound and exports for every platform.",
+    gets: ["Logo and interface animation", "Product films and explainers", "Edits cut for every format"],
+    tags: ["After Effects", "Rive", "Lottie", "Logo animation", "Explainers", "Video editing"],
+  },
+] as const;
+
+export type ServiceId = (typeof services)[number]["id"];
+
 // PLACEHOLDER: studio concept projects. Replace with real case studies and screenshots.
-// Each entry drives a spotlight on the home page, a tile on /work and a page at /work/<slug>.
+// Each entry drives a row on the home page, a tile on /work and a page at /work/<slug>.
 export const work = [
   {
     slug: "halcyon",
@@ -97,7 +103,7 @@ export const work = [
       "Designed in Figma as a full system, then built in Next.js with a typed API layer so the interface and the data never drift apart.",
     ],
     sectors: ["Fintech", "B2B SaaS"],
-    tags: ["Product UI/UX", "Product eng", "Design system"],
+    tags: ["Product UI/UX", "Engineering", "Design system"],
     specs: [
       { k: "Scope", v: "Product design and build" },
       { k: "Platform", v: "Web app, responsive" },
@@ -147,7 +153,7 @@ export const work = [
       "Built in Next.js with a CMS behind the changelog and docs, tuned to load fast and score well where it counts.",
     ],
     sectors: ["Developer tools", "B2B SaaS"],
-    tags: ["Landing page", "Full website", "Product eng"],
+    tags: ["Landing page", "Full website", "Engineering"],
     specs: [
       { k: "Scope", v: "Website design and build" },
       { k: "Pages", v: "Landing, docs, pricing, changelog" },
@@ -190,41 +196,35 @@ export const work = [
 export type Project = (typeof work)[number];
 
 // PLACEHOLDER: confirm these reflect how the studio really works.
-export const compare = {
-  columns: ["In-house hire", "Freelancers"],
-  rows: [
-    { topic: "Time to start", us: "Within days of signing off the scope", others: ["Months to hire and onboard", "Weeks to find a good one"] },
-    { topic: "Skills covered", us: "Brand, product, web, engineering and motion", others: ["One person's skill set", "One skill each"] },
-    { topic: "Speed", us: "Design and build move in parallel", others: ["One task at a time", "Fitted around other clients"] },
-    { topic: "Collaboration", us: "One point of contact, shared channel", others: ["You manage them", "You manage each one"] },
-    { topic: "Transparency", us: "Weekly demos of real progress", others: ["Depends on the person", "Updates when they are free"] },
-    { topic: "Scaling", us: "Add or remove disciplines as needed", others: ["Every new skill is a new hire", "Start the search again"] },
-    { topic: "Ownership", us: "All files and code are yours", others: ["Yours", "Varies by contract"] },
-    { topic: "Risk", us: "Start with one pilot week", others: ["A hard hire to undo", "No continuity if they leave"] },
-  ],
-};
-
 export const process = [
-  { name: "Discover", span: "Week 0", body: "A short call, then a written scope: what we will make, the timeline and a fixed quote." },
-  { name: "Define", span: "Week 1", body: "Research, structure and direction. You see the thinking before anything is polished." },
-  { name: "Design", span: "Ongoing", body: "High-fidelity design in Figma, reviewed with you in short, regular cycles." },
-  { name: "Build", span: "In parallel", body: "Engineering starts while design is still moving, so nothing waits on a handoff." },
-  { name: "Launch", span: "Final week", body: "We ship, check it in the wild, and hand over files, code and documentation." },
+  { name: "Wonder", span: "Before we start", body: "Questions before screens. What is this for, who is it for, and what would make it unmistakable?" },
+  { name: "Crease", span: "Week one", body: "We mark the lines: structure, direction and a technical plan, decided early and in the open." },
+  { name: "Fold", span: "Every week", body: "Design and engineering move together in short cycles, with a demo of real progress each week." },
+  { name: "Press", span: "Before launch", body: "The details that make it feel finished: motion, states, speed, accessibility, copy." },
+  { name: "Unfold", span: "Launch", body: "We ship it, check it in the wild, and hand over the files, the code and the documentation." },
 ];
 
-export const stack = [
-  "Figma", "Framer", "Webflow", "Next.js", "React", "TypeScript", "Tailwind CSS", "React Native",
-  "Node.js", "PostgreSQL", "Supabase", "Sanity", "Rive", "Lottie", "After Effects",
+// PLACEHOLDER: engagement models. Confirm details and add pricing if wanted.
+export const engagements = [
+  {
+    name: "Pilot",
+    span: "One week",
+    body: "A short, real piece of your project, so you can judge the process and the quality before committing to more.",
+    points: ["One focused problem", "Working sessions through the week", "You keep everything we make"],
+  },
+  {
+    name: "Project",
+    span: "Fixed scope",
+    body: "A defined outcome with a clear plan: a brand, a product release, a website. Designed, built and launched end to end.",
+    points: ["Scope, timeline and quote agreed upfront", "Weekly demos", "Full handover at launch"],
+  },
+  {
+    name: "Embedded",
+    span: "Month to month",
+    body: "We join your team as its design and engineering wing, working inside your tools, your rituals and your roadmap.",
+    points: ["Shared channel and stand-ups", "Priorities you can change", "Scale up or down as needed"],
+  },
 ];
-
-export const pilot = {
-  title: "Start with a pilot week",
-  badge: "Fixed price",
-  body: [
-    "Meet the team, work with the designers and engineers, and see the process and the quality first-hand on a real piece of your project.",
-    "If it is the right fit, we carry on into the full project. If not, you keep everything we made that week.",
-  ],
-};
 
 export const faqs = [
   { q: "Why Curiofold?", a: "Most studios split design and development across different people, or different companies. We do both as one team, so what gets designed is what gets shipped and you never have to coordinate between vendors." },

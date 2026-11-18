@@ -82,7 +82,7 @@ export function Brief() {
         </label>
         <input
           id="brief-name"
-          className="field mt-3"
+          className="input mt-3"
           placeholder="Your name"
           autoComplete="name"
           value={name}
@@ -93,7 +93,7 @@ export function Brief() {
         </label>
         <textarea
           id="brief-details"
-          className="field mt-2 min-h-32 resize-y"
+          className="input mt-2 min-h-32 resize-y"
           placeholder="What are you making, and what should it do?"
           value={details}
           onChange={(e) => setDetails(e.target.value)}

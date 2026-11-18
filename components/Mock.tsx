@@ -320,7 +320,7 @@ export function BrandBoard() {
       </div>
       <div className="col-span-2 row-span-2 flex flex-col justify-between rounded-[0_1.4em_0_1.4em] bg-[#161a1a] p-[1.1em]">
         <p className="text-[4.2em] font-semibold leading-none tracking-[-0.05em]">Aa</p>
-        <p className="text-white/45">Inter Tight, 600 / 400</p>
+        <p className="text-white/45">Grotesk, 600 / 400</p>
       </div>
       <div className="row-span-2 grid place-items-center rounded-[0_1.4em_0_1.4em] bg-[#b8862f] text-[#0f1414]">
         <OrbitMark className="w-[62%]" />

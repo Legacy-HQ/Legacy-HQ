@@ -15,7 +15,7 @@ const steps = [
 
 export default function ContactPage() {
   return (
-    <main className="wrap pb-24 pt-16 md:pb-32 md:pt-24">
+    <main className="wrap pb-28 pt-36 md:pb-40 md:pt-48">
       <p className="label fade-up flex items-center text-muted">
         <span className="pip" /> Start a project
       </p>
@@ -36,7 +36,7 @@ export default function ContactPage() {
         </div>
 
         <aside className="lg:col-span-4 lg:col-start-9">
-          <div className="zone-dark leaf p-8 [--r:1.5rem]">
+          <div className="zone-light leaf p-8 [--r:1.5rem]">
             <p className="label text-muted">Prefer plain email?</p>
             <a href={`mailto:${site.email}`} className="display mt-3 block break-words text-2xl hover:opacity-60">
               {site.email}

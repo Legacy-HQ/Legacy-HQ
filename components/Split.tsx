@@ -21,7 +21,7 @@ export function Split() {
   return (
     <div
       ref={ref}
-      className="split leaf relative cursor-ew-resize touch-pan-y select-none overflow-hidden border border-line bg-obsidian shadow-[0_3rem_6rem_-3rem_rgb(17_17_15/0.55)] [--r:1.75rem]"
+      className="split leaf relative cursor-ew-resize touch-pan-y select-none overflow-hidden border border-line bg-obsidian shadow-[0_3rem_6rem_-3rem_rgb(17_17_15/0.55)] [--r:2rem]"
       data-auto={auto}
       onPointerMove={move}
       onPointerDown={move}

@@ -13,7 +13,7 @@ export function WorkGrid() {
 
   return (
     <>
-      <div className="flex flex-wrap justify-center gap-2" role="group" aria-label="Filter work by type">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter work by type">
         {filters.map((item) => (
           <button key={item} type="button" className="chip" aria-pressed={filter === item} onClick={() => setFilter(item)}>
             {item}
@@ -30,7 +30,7 @@ export function WorkGrid() {
               </div>
               <div className="mt-4 flex flex-wrap items-center gap-1.5">
                 {project.sectors.map((sector) => (
-                  <span key={sector} className="tag !bg-paper-2">
+                  <span key={sector} className="tag">
                     {sector}
                   </span>
                 ))}
