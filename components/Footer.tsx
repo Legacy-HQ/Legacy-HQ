@@ -1,84 +1,119 @@
 import Link from "next/link";
-import { nav, site } from "@/lib/content";
-import { Clock } from "./Clock";
+import { nav, services, site, work } from "@/lib/content";
 import { Mark } from "./Logo";
-import { Planes } from "./Planes";
-import { Reveal } from "./Reveal";
+
+export function Cta() {
+  return (
+    <section className="relative overflow-hidden border-t border-line">
+      <Mark className="pointer-events-none absolute -left-72 top-1/2 hidden h-[125%] w-auto -translate-y-1/2 opacity-[0.06] lg:block" />
+      <Mark className="pointer-events-none absolute -right-72 top-1/2 hidden h-[125%] w-auto -translate-y-1/2 opacity-[0.06] sm:block" />
+      <div className="wrap relative py-28 text-center md:py-40">
+        <h2 className="display mx-auto max-w-4xl text-[clamp(2.8rem,7.5vw,6.5rem)]">
+          Let&rsquo;s build something <em>worth noticing.</em>
+        </h2>
+        <div className="mt-10 flex flex-wrap justify-center gap-2.5">
+          <Link href="/contact" className="btn btn-ink !px-7 !py-5 !text-base">
+            Start a project
+          </Link>
+          <Link href="/work" className="btn btn-soft !px-7 !py-5 !text-base">
+            See our work
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Column({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <p className="font-semibold">{title}</p>
+      <ul className="mt-4 space-y-2.5 text-muted">{children}</ul>
+    </div>
+  );
+}
+
+const link = "transition-colors hover:text-ink";
 
 export function Footer() {
   return (
-    <footer id="contact" className="zone-dark relative overflow-hidden bg-void">
-      <Planes className="opacity-80" />
-      <div className="wrap relative pt-24 md:pt-40">
-        <Reveal>
-          <p className="label flex items-center text-paper/50">
-            <span className="pip" /> Start a project
+    <footer className="zone-dark overflow-hidden">
+      <div className="wrap grid gap-12 pb-16 pt-20 lg:grid-cols-12">
+        <div className="lg:col-span-4">
+          <Link href="/" className="group inline-flex items-center gap-3">
+            <Mark className="mark-live h-9 w-9" />
+            <span className="text-xl font-semibold tracking-tight">{site.name}</span>
+          </Link>
+          <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted">{site.description}</p>
+          <p className="mt-6 text-sm text-muted">
+            © {2026} {site.name}
           </p>
-          <h2 className="display mt-8 text-[clamp(3.2rem,10vw,10rem)]">
-            Got something curious?
-            <br />
-            <em>Let&rsquo;s unfold it.</em>
-          </h2>
-          <div className="mt-12 flex flex-wrap items-center gap-4">
-            <Link href="/contact" className="btn btn-accent leaf !px-7 !py-5 !text-lg [--leaf-size:1.5rem]">
-              Write a brief <span className="arrow">↗</span>
-            </Link>
-            <a href={`mailto:${site.email}`} className="btn btn-line leaf !px-7 !py-5 !text-lg [--leaf-size:1.5rem]">
-              {site.email}
-            </a>
-          </div>
-          <p className="mt-6 max-w-sm text-sm text-paper/55">
-            Tell us what you&rsquo;re making and where it&rsquo;s stuck. It&rsquo;s <Clock /> where you are, which is a
-            good time to start.
-          </p>
-        </Reveal>
-
-        <div className="mt-24 grid grid-cols-2 gap-10 border-t border-line-inv pt-10 text-sm md:mt-36 md:grid-cols-12">
-          <div className="col-span-2 md:col-span-5">
-            <Mark className="h-12 w-12" />
-            <p className="mt-5 max-w-xs text-paper/55">{site.description}</p>
-          </div>
-          <nav aria-label="Footer" className="md:col-span-3 md:col-start-7">
-            <p className="label mb-4 text-paper/40">Studio</p>
-            <ul className="space-y-2.5">
-              {nav.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className="text-paper/80 transition-opacity hover:opacity-60">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <div className="md:col-span-3">
-            <p className="label mb-4 text-paper/40">Elsewhere</p>
-            <ul className="space-y-2.5">
-              {site.socials.map((item) => (
-                <li key={item.label}>
-                  <a href={item.href} className="text-paper/80 transition-opacity hover:opacity-60">
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-10 text-[0.92rem] sm:grid-cols-4 lg:col-span-8">
+          <Column title="Pages">
+            <li>
+              <Link href="/" className={link}>
+                Home
+              </Link>
+            </li>
+            {nav.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className={link}>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </Column>
+          <Column title="Services">
+            {services.map((service) => (
+              <li key={service.id}>
+                <Link href="/#services" className={link}>
+                  {service.name.replace("Full-stack product engineering", "Engineering")}
+                </Link>
+              </li>
+            ))}
+          </Column>
+          <Column title="Recent work">
+            {work.map((project) => (
+              <li key={project.slug}>
+                <Link href={`/work/${project.slug}`} className={link}>
+                  {project.name}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link href="/work" className={link}>
+                All projects
+              </Link>
+            </li>
+          </Column>
+          <Column title="Contact">
+            <li>
+              <Link href="/contact" className={link}>
+                Start a project
+              </Link>
+            </li>
+            <li>
+              <a href={`mailto:${site.email}`} className={link}>
+                Email
+              </a>
+            </li>
+            {site.socials.map((item) => (
+              <li key={item.label}>
+                <a href={item.href} className={link}>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </Column>
         </div>
       </div>
-
       <p
         aria-hidden="true"
-        className="display pointer-events-none relative mt-10 select-none whitespace-nowrap text-center text-[31vw] !leading-[0.72] text-paper/[0.07]"
+        className="display outline-word pointer-events-none -mb-[0.16em] select-none whitespace-nowrap text-center text-[25.5vw] !leading-[0.8] !tracking-[-0.05em]"
       >
         {site.name}
       </p>
-      <div className="wrap label relative -mt-2 flex justify-between pb-6 text-paper/40">
-        <span>
-          © {2026} {site.name}
-        </span>
-        <a href="#top" className="transition-opacity hover:opacity-60">
-          Back to top ↑
-        </a>
-      </div>
     </footer>
   );
 }

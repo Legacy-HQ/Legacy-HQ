@@ -42,7 +42,7 @@ export function Brief() {
   return (
     <div className="space-y-12">
       <fieldset>
-        <legend className="label text-muted">01 — What do you need?</legend>
+        <legend className="text-lg font-semibold tracking-tight">01 — What do you need?</legend>
         <div className="mt-4 flex flex-wrap gap-2">
           {brief.needs.map((item) => (
             <button
@@ -59,7 +59,7 @@ export function Brief() {
       </fieldset>
 
       <fieldset>
-        <legend className="label text-muted">02 — When do you need it?</legend>
+        <legend className="text-lg font-semibold tracking-tight">02 — When do you need it?</legend>
         <div className="mt-4 flex flex-wrap gap-2">
           {brief.timelines.map((item) => (
             <button
@@ -76,7 +76,7 @@ export function Brief() {
       </fieldset>
 
       <div>
-        <p className="label text-muted">03 — Tell us about it</p>
+        <p className="text-lg font-semibold tracking-tight">03 — Tell us about it</p>
         <label className="sr-only" htmlFor="brief-name">
           Your name
         </label>
@@ -101,10 +101,10 @@ export function Brief() {
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
-        <a href={href} className="btn btn-ink leaf !px-7 !py-5 !text-lg [--leaf-size:1.5rem]">
+        <a href={href} className="btn btn-ink !px-7 !py-5 !text-base">
           Open in your mail app <span className="arrow">↗</span>
         </a>
-        <button type="button" className="btn btn-line leaf !py-5" onClick={copy}>
+        <button type="button" className="btn btn-line !py-5" onClick={copy}>
           {copied ? "Copied" : "Copy the brief"}
         </button>
         <p className="w-full text-sm text-muted" aria-live="polite">

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
-import { Footer } from "@/components/Footer";
+import { Geist, Geist_Mono, Inter_Tight } from "next/font/google";
+import { Cta, Footer } from "@/components/Footer";
 import { Intro } from "@/components/Intro";
 import { Nav } from "@/components/Nav";
 import { site } from "@/lib/content";
@@ -16,11 +16,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -44,17 +42,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${interTight.variable} antialiased`}
     >
       <body className="min-h-screen overflow-x-clip">
         <noscript>
-          <style>{`.reveal{opacity:1;transform:none}.ink-word{opacity:1}`}</style>
+          <style>{`.reveal{opacity:1;transform:none}`}</style>
         </noscript>
         <Intro />
         <div className="progress" aria-hidden="true" />
-        <div className="grain" aria-hidden="true" />
         <Nav />
         <div id="top">{children}</div>
+        <Cta />
         <Footer />
       </body>
     </html>

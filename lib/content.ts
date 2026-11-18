@@ -3,18 +3,18 @@
 
 export const site = {
   name: "Curiofold",
-  tagline: "Motion, graphics & edit studio",
+  tagline: "Design and engineering studio",
   description:
-    "Curiofold is a creative studio for motion design, graphic design and video editing. We fold ideas into things that move.",
-  // PLACEHOLDER: confirm the real contact address and social links.
+    "Curiofold is a design and engineering studio. Branding, product UI/UX, full-stack engineering, landing pages and websites, made by one team.",
+  announcement: "Now booking new projects",
+  // PLACEHOLDER: confirm the real contact address, domain and social links.
   email: "hello@curiofold.com",
-  // PLACEHOLDER: the live domain, used for link previews.
   url: "https://curiofold.com",
   socials: [
+    { label: "X", href: "#" },
+    { label: "LinkedIn", href: "#" },
     { label: "Instagram", href: "#" },
-    { label: "YouTube", href: "#" },
-    { label: "Behance", href: "#" },
-    { label: "X / Twitter", href: "#" },
+    { label: "Dribbble", href: "#" },
   ],
 };
 
@@ -22,253 +22,222 @@ export const nav = [
   { label: "Work", href: "/work" },
   { label: "Services", href: "/#services" },
   { label: "Process", href: "/#process" },
-  { label: "Engage", href: "/#engage" },
-  { label: "Contact", href: "/contact" },
+  { label: "Compare", href: "/#compare" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
-export const marquee = [
-  "Motion design",
-  "Logo animation",
-  "Brand identity",
-  "Posters & print",
-  "Social content",
-  "Video editing",
-  "Title sequences",
-  "Colour & sound",
-];
-
-export const manifesto =
-  "Most content is flat. It gets made fast, posted once and forgotten by the next scroll. We work the other way. We stay curious about the idea, crease it until the shape is right, then fold design, motion and edit together into something people stop for and remember.";
+export const sectors = ["SaaS", "Fintech", "AI products", "Developer tools", "Consumer apps", "E-commerce"];
 
 export const services = [
   {
-    name: "Motion design",
-    summary: "Ideas that move, and move people.",
-    body: "Animation with rhythm and intent: logo reveals, explainers, product films, kinetic type and motion systems that give a brand its own way of moving.",
-    tags: ["Logo animation", "Explainers", "Kinetic type", "2D & 3D", "Motion systems", "UI motion"],
+    id: "branding",
+    name: "Branding",
+    body: "We build complete brand identities: logo, colour, typography and a visual language that stays consistent everywhere it appears. Everything is handed over in a brand portal your whole team can open and use the same day.",
+    gets: ["Logo suite and usage rules", "Colour and type system", "Brand portal with every asset"],
+    tags: ["Logo", "Colour systems", "Typography", "Visual language", "Brand portal", "Pitch decks", "Figma", "Illustrator"],
   },
   {
-    name: "Graphic design",
-    summary: "A look that could only be yours.",
-    body: "Identity and visual design that holds together everywhere it lands, from the logo and type system to posters, covers, decks and a full set of social templates.",
-    tags: ["Brand identity", "Logo", "Posters", "Social kits", "Thumbnails", "Pitch decks"],
+    id: "product",
+    name: "Product UI/UX",
+    body: "Confusing products lose people before they reach the good part. We handle research, flows and precise interface design in Figma, made simple for the people using it and unambiguous for the engineers building it.",
+    gets: ["Research and user flows", "High-fidelity screens and prototypes", "A design system engineers can build from"],
+    tags: ["Figma", "Web apps", "Mobile apps", "Dashboards", "Design systems", "Prototypes", "Desktop apps"],
   },
   {
-    name: "Video editing",
-    summary: "The cut is where the story happens.",
-    body: "Editing that finds the pace of a piece. Long form, short form and everything between, finished with colour, sound design, captions and exports for every platform.",
-    tags: ["Long form", "Reels & shorts", "Colour grade", "Sound design", "Captions", "Trailers"],
+    id: "engineering",
+    name: "Full-stack product engineering",
+    body: "We take your product from Figma to production. Faithful implementation, clean integration with your backend, and typed, tested code written by the same team that designed it. No shortcuts and nothing lost in translation.",
+    gets: ["Front end built exactly as designed", "APIs, auth, data and integrations", "Clean repository and documentation"],
+    tags: ["Next.js", "TypeScript", "React", "React Native", "Node.js", "PostgreSQL", "Supabase", "Swift", "Redis"],
   },
+  {
+    id: "landing",
+    name: "Landing pages",
+    body: "Pages built to turn attention into action. Custom visuals, animation and interaction around one clear message, for launches, waitlists and campaigns where a template would undersell the product.",
+    gets: ["Messaging structure and copy direction", "Custom visuals and motion", "Fast, measurable build"],
+    tags: ["Figma", "Framer", "Webflow", "Next.js", "Rive", "Lottie", "Waitlist pages", "Product pages", "A/B variants"],
+  },
+  {
+    id: "websites",
+    name: "Full websites",
+    body: "Custom websites in Framer, Webflow or Next.js, chosen for what your team needs to run afterwards. Every layout, animation and line of code is made from scratch for your brand, on a CMS you can update without us.",
+    gets: ["Sitemap and page system", "CMS your team can run", "SEO, performance and analytics set up"],
+    tags: ["Framer", "Webflow", "Next.js", "Sanity", "CMS websites", "Marketing websites", "SEO", "Analytics"],
+  },
+  {
+    id: "motion",
+    name: "Motion and video",
+    body: "Motion gives a brand its own way of moving. We animate logos, interfaces and explainers, and edit video for launches and social, finished with colour, sound and exports for every platform.",
+    gets: ["Logo and interface animation", "Product films and explainers", "Edits cut for every format"],
+    tags: ["After Effects", "Rive", "Lottie", "Logo animation", "Explainers", "Video editing", "Reels and shorts"],
+  },
+] as const;
+
+export type ServiceId = (typeof services)[number]["id"];
+
+export const figures = [
+  { figure: "6", label: "Disciplines under one roof" },
+  { figure: "1", label: "Team, from brief to launch" },
+  { figure: "0", label: "Handoffs between design and code" },
+  { figure: "100%", label: "Of files and code handed over" },
 ];
 
-// PLACEHOLDER: studio concept pieces. Replace with real projects (and real footage).
-// Each entry drives a card on the home page, a tile on /work and a full page at /work/<slug>.
+// PLACEHOLDER: studio concept projects. Replace with real case studies and screenshots.
+// Each entry drives a spotlight on the home page, a tile on /work and a page at /work/<slug>.
 export const work = [
-  {
-    slug: "orrery",
-    name: "Orrery",
-    kind: "Motion identity",
-    craft: "Motion",
-    blurb:
-      "A logo that never sits still. One mark built from orbits, animated into a full system of idents, loops and transitions.",
-    tags: ["Motion design", "Logo animation", "Brand"],
-    tone: "ink",
-    specs: [
-      { k: "Format", v: "Idents, loops, transitions" },
-      { k: "Length", v: "6 second master loop" },
-      { k: "Delivered as", v: "16:9, 9:16, 1:1 and Lottie" },
-    ],
-    story: [
-      {
-        title: "Wonder",
-        body: "What if a logo behaved like the thing it is named after? An orrery is a model of orbits, so the mark should keep time rather than sit still.",
-      },
-      {
-        title: "Crease",
-        body: "Three rings, three speeds, one fixed centre. We set the ratios first so every loop lands back on the resting mark without a visible cut.",
-      },
-      {
-        title: "Fold",
-        body: "The same motion became the system: a six second ident, a looping avatar, and wipes that use the rings to move from one scene to the next.",
-      },
-    ],
-    deliverables: ["Animated logo", "Ident and sting", "Looping avatar", "Transition pack", "Motion guidelines"],
-  },
-  {
-    slug: "tessel",
-    name: "Tessel",
-    kind: "Poster series",
-    craft: "Graphic",
-    blurb:
-      "Three shapes, one strict grid and no colour at all. A print series that proves how far a small set of rules can go.",
-    tags: ["Graphic design", "Print", "Type"],
-    tone: "ivory",
-    specs: [
-      { k: "Format", v: "Poster series of three" },
-      { k: "Size", v: "50 × 70 cm, plus social crops" },
-      { k: "Delivered as", v: "Print-ready PDF and templates" },
-    ],
-    story: [
-      {
-        title: "Wonder",
-        body: "How little do you need for a set of posters to feel like a family? We removed colour, photography and illustration to find out.",
-      },
-      {
-        title: "Crease",
-        body: "A five by seven grid, one serif, and three shapes: a disc, a folded sheet and a stack of bars. Every poster uses the same margins and the same baseline.",
-      },
-      {
-        title: "Fold",
-        body: "Each poster swaps figure and ground, so the three read as a sequence on a wall and still hold up alone as a square crop in a feed.",
-      },
-    ],
-    deliverables: ["Three posters", "Type and grid system", "Social crops", "Editable templates"],
-  },
   {
     slug: "halcyon",
     name: "Halcyon",
-    kind: "Brand film edit",
-    craft: "Edit",
-    blurb:
-      "Ninety seconds cut from hours of footage. Paced to the music, graded to a single mood and finished with sound that carries it.",
-    tags: ["Video editing", "Colour", "Sound design"],
-    tone: "slate",
+    kind: "Treasury platform",
+    craft: "Product",
+    blurb: "A calm control room for company cash, designed and built as one piece.",
+    paragraphs: [
+      "A concept for a treasury product where finance teams see every account, forecast and payment in one place.",
+      "Dense data with a quiet hierarchy: one number always matters most, and everything else steps back until it is needed.",
+      "Designed in Figma as a full system, then built in Next.js with a typed API layer so the interface and the data never drift apart.",
+    ],
+    sectors: ["Fintech", "B2B SaaS"],
+    tags: ["Product UI/UX", "Product eng", "Design system"],
     specs: [
-      { k: "Format", v: "Brand film with cutdowns" },
-      { k: "Length", v: "90 seconds, plus 30 and 15" },
-      { k: "Delivered as", v: "16:9 master, 9:16 and 1:1 cuts" },
+      { k: "Scope", v: "Product design and build" },
+      { k: "Platform", v: "Web app, responsive" },
+      { k: "Stack", v: "Figma, Next.js, PostgreSQL" },
     ],
     story: [
-      {
-        title: "Wonder",
-        body: "Hours of good footage is a harder brief than too little. The question was what the film is about once everything pretty has been removed.",
-      },
-      {
-        title: "Crease",
-        body: "We built the cut on paper first: one line of story, a music map marking every beat, and a short list of shots that had earned their place.",
-      },
-      {
-        title: "Fold",
-        body: "The edit breathes with the track, the grade holds one cool, quiet mood from first frame to last, and the sound design fills the space between cuts.",
-      },
+      { title: "Problem", body: "Treasury tools show everything at once. People open five tabs and a spreadsheet to answer one question: how much cash do we really have?" },
+      { title: "Approach", body: "We ranked every piece of data by how often it drives a decision, then designed the layout around the top three and tucked the rest one click away." },
+      { title: "Result", body: "A dashboard that answers the main question in the first second, with a component system that covers forecasting, payments and reporting without new patterns." },
     ],
-    deliverables: ["Master edit", "Short cutdowns", "Colour grade", "Sound design and mix", "Captions"],
+    deliverables: ["Product UI/UX", "Design system", "Front-end build", "API and data layer", "Motion details"],
   },
   {
     slug: "moth",
     name: "Moth",
-    kind: "Title sequence",
-    craft: "Motion",
-    blurb:
-      "An opening sequence told in light and shadow. Storyboarded frame by frame, then animated with type that drifts like its namesake.",
-    tags: ["Motion design", "Storyboard", "Kinetic type"],
-    tone: "bone",
+    kind: "Sleep companion app",
+    craft: "Product",
+    blurb: "A night-first mobile app that dims with you and never asks for attention after dark.",
+    paragraphs: [
+      "A concept for a sleep app designed around the hour before bed, when most apps are at their loudest.",
+      "Large type, slow motion and a palette that drops in contrast as the evening goes on. Every flow can be finished with one thumb.",
+      "Designed for iOS and Android together, with a shared component library and Rive animations for the moments that deserve one.",
+    ],
+    sectors: ["Wellness", "B2C"],
+    tags: ["Mobile app", "Product UI/UX", "Motion"],
     specs: [
-      { k: "Format", v: "Opening title sequence" },
-      { k: "Length", v: "45 seconds at 24 fps" },
-      { k: "Delivered as", v: "ProRes master with type layers" },
+      { k: "Scope", v: "Mobile product design" },
+      { k: "Platform", v: "iOS and Android" },
+      { k: "Stack", v: "Figma, Rive, React Native" },
     ],
     story: [
-      {
-        title: "Wonder",
-        body: "A title sequence sets the temperature of everything after it. This one needed to feel like the last hour of daylight.",
-      },
-      {
-        title: "Crease",
-        body: "Twelve storyboard frames, each built around a single source of light. The type was drawn to appear a letter at a time, pulled toward that light.",
-      },
-      {
-        title: "Fold",
-        body: "Animated at 24 frames with slow, uneven easing so nothing moves mechanically. The title arrives last, and stays just long enough.",
-      },
+      { title: "Problem", body: "Sleep apps ask for the most interaction at the moment you should be putting the phone down." },
+      { title: "Approach", body: "We designed for the dimmest setting first. If a screen worked at arm's length, half asleep, it worked everywhere else." },
+      { title: "Result", body: "Three core screens, one gesture each, and a wind-down flow that takes less than ten seconds to start." },
     ],
-    deliverables: ["Storyboard", "Styleframes", "Animated sequence", "Title card", "Type toolkit"],
+    deliverables: ["Mobile UI/UX", "Component library", "Rive animations", "Onboarding flow", "App Store assets"],
+  },
+  {
+    slug: "tessel",
+    name: "Tessel",
+    kind: "Developer platform website",
+    craft: "Web",
+    blurb: "A launch site for an API product, where the documentation is the hero.",
+    paragraphs: [
+      "A concept for a developer tools company launching its first public API.",
+      "Developers trust what they can run, so the landing page leads with a working code sample instead of a claim, and every section answers a question an engineer would ask next.",
+      "Built in Next.js with a CMS behind the changelog and docs, tuned to load fast and score well where it counts.",
+    ],
+    sectors: ["Developer tools", "B2B SaaS"],
+    tags: ["Landing page", "Full website", "Product eng"],
+    specs: [
+      { k: "Scope", v: "Website design and build" },
+      { k: "Pages", v: "Landing, docs, pricing, changelog" },
+      { k: "Stack", v: "Figma, Next.js, Sanity" },
+    ],
+    story: [
+      { title: "Problem", body: "Developer marketing pages tend to promise speed and simplicity without showing either." },
+      { title: "Approach", body: "We put real, copyable code above the fold and let the page prove the product, with motion used only to explain how requests flow." },
+      { title: "Result", body: "A site that reads like good documentation and still sells: one clear path from first glance to first API call." },
+    ],
+    deliverables: ["Landing page", "Marketing website", "CMS setup", "Docs templates", "Launch assets"],
+  },
+  {
+    slug: "orrery",
+    name: "Orrery",
+    kind: "Brand identity",
+    craft: "Brand",
+    blurb: "An identity built from orbits: a mark that moves, a strict type system and a calm palette.",
+    paragraphs: [
+      "A concept identity for a company that makes precise things and wants to look like it.",
+      "One mark drawn from three orbits, a two-weight type system and a palette of four colours, documented so anyone on the team can apply it correctly.",
+      "Delivered through a brand portal with logo files, templates and motion guidelines, so the brand holds together long after handover.",
+    ],
+    sectors: ["Hardware", "B2C"],
+    tags: ["Branding", "Brand portal", "Motion"],
+    specs: [
+      { k: "Scope", v: "Brand identity system" },
+      { k: "Includes", v: "Logo, type, colour, motion" },
+      { k: "Delivered as", v: "Brand portal and Figma library" },
+    ],
+    story: [
+      { title: "Problem", body: "A good product with a forgettable face. The old identity was a wordmark and a colour, applied differently every time." },
+      { title: "Approach", body: "We looked for one idea the whole system could grow from, and found it in the name: bodies in orbit, always in proportion." },
+      { title: "Result", body: "A mark that works at sixteen pixels and on a building, with rules simple enough that the system polices itself." },
+    ],
+    deliverables: ["Logo suite", "Colour and type system", "Brand guidelines", "Templates", "Logo animation"],
   },
 ] as const;
 
 export type Project = (typeof work)[number];
 
-export const formats = [
-  { id: "16:9", ratio: 16 / 9, where: "YouTube, web, screens" },
-  { id: "9:16", ratio: 9 / 16, where: "Reels, Shorts, TikTok" },
-  { id: "1:1", ratio: 1, where: "Feed posts, covers" },
-  { id: "4:5", ratio: 4 / 5, where: "Feed, paid social" },
-] as const;
-
-// Options offered in the project brief on /contact.
-export const brief = {
-  needs: ["Motion design", "Graphic design", "Video editing", "Not sure yet"],
-  timelines: ["As soon as possible", "2 to 4 weeks", "1 to 2 months", "Flexible"],
+// PLACEHOLDER: confirm these reflect how the studio really works.
+export const compare = {
+  columns: ["In-house hire", "Freelancers"],
+  rows: [
+    { topic: "Time to start", us: "Within days of signing off the scope", others: ["Months to hire and onboard", "Weeks to find a good one"] },
+    { topic: "Skills covered", us: "Brand, product, web, engineering and motion", others: ["One person's skill set", "One skill each"] },
+    { topic: "Speed", us: "Design and build move in parallel", others: ["One task at a time", "Fitted around other clients"] },
+    { topic: "Collaboration", us: "One point of contact, shared channel", others: ["You manage them", "You manage each one"] },
+    { topic: "Transparency", us: "Weekly demos of real progress", others: ["Depends on the person", "Updates when they are free"] },
+    { topic: "Scaling", us: "Add or remove disciplines as needed", others: ["Every new skill is a new hire", "Start the search again"] },
+    { topic: "Ownership", us: "All files and code are yours", others: ["Yours", "Varies by contract"] },
+    { topic: "Risk", us: "Start with one pilot week", others: ["A hard hire to undo", "No continuity if they leave"] },
+  ],
 };
 
 export const process = [
-  {
-    name: "Wonder",
-    body: "We start with questions, not software. What is this for, who is it for, and what should they feel when it ends?",
-  },
-  {
-    name: "Crease",
-    body: "We mark the lines: script, moodboard, storyboard and styleframes. You see the direction before anything is animated or cut.",
-  },
-  {
-    name: "Fold",
-    body: "Design, animation and edit come together in rounds. You review real work in progress, with clear points to give feedback.",
-  },
-  {
-    name: "Unfold",
-    body: "Final delivery in every format you need, with source files and a tidy handover so the work is easy to reuse.",
-  },
+  { name: "Discover", span: "Week 0", body: "A short call, then a written scope: what we will make, the timeline and a fixed quote." },
+  { name: "Define", span: "Week 1", body: "Research, structure and direction. You see the thinking before anything is polished." },
+  { name: "Design", span: "Ongoing", body: "High-fidelity design in Figma, reviewed with you in short, regular cycles." },
+  { name: "Build", span: "In parallel", body: "Engineering starts while design is still moving, so nothing waits on a handoff." },
+  { name: "Launch", span: "Final week", body: "We ship, check it in the wild, and hand over files, code and documentation." },
 ];
 
-export const principles = [
-  { figure: "3", label: "crafts under one roof: motion, graphics and edit" },
-  { figure: "1", label: "team from first sketch to final export" },
-  { figure: "0", label: "templates. Every piece starts from a blank sheet" },
-  { figure: "∞", label: "curiosity about what the idea could become" },
+export const stack = [
+  "Figma", "Framer", "Webflow", "Next.js", "React", "TypeScript", "Tailwind CSS", "React Native",
+  "Node.js", "PostgreSQL", "Supabase", "Sanity", "Rive", "Lottie", "After Effects",
 ];
 
-// PLACEHOLDER: engagement models. Confirm details and add pricing if wanted.
-export const engagements = [
-  {
-    name: "Single",
-    span: "One piece",
-    body: "One deliverable, done properly: a logo animation, a poster, an edit. A simple way to see how we work.",
-    points: ["One clear brief", "Agreed rounds of feedback", "All formats and source files"],
-  },
-  {
-    name: "Project",
-    span: "Fixed scope",
-    body: "A full body of work around a launch, a campaign or a rebrand, designed and produced as one connected set.",
-    points: ["Concept and art direction", "Motion, graphics and edit together", "A delivery schedule you can plan around"],
-    featured: true,
-  },
-  {
-    name: "Retainer",
-    span: "Monthly",
-    body: "An ongoing creative partner for teams and creators who publish often and want a consistent look every time.",
-    points: ["A set amount of work each month", "Priority turnaround", "One consistent visual language"],
-  },
-];
+export const pilot = {
+  title: "Start with a pilot week",
+  badge: "Fixed price",
+  body: [
+    "Meet the team, work with the designers and engineers, and see the process and the quality first-hand on a real piece of your project.",
+    "If it is the right fit, we carry on into the full project. If not, you keep everything we made that week.",
+  ],
+};
 
 export const faqs = [
-  {
-    q: "What kind of work do you take on?",
-    a: "Motion design, graphic design and video editing, separately or together. That covers things like logo animations, explainers, brand identities, posters, social content and edits for long and short form video.",
-  },
-  {
-    q: "Who do you work with?",
-    a: "Brands, startups, agencies and creators who care how their work looks and moves. Some come with a finished brief, some with only a rough idea. Both are fine.",
-  },
-  {
-    q: "How does a project start?",
-    a: "With a short conversation about what you need and when. We follow up with a written scope, a timeline and a quote, and begin once you are happy with all three.",
-  },
-  {
-    q: "How do revisions work?",
-    a: "Each project includes agreed rounds of feedback at set points: after the direction, after the first full pass and before final delivery. That keeps things moving and avoids surprises.",
-  },
-  {
-    q: "What do I get at the end?",
-    a: "Final files exported for every platform you need, plus the source and project files, so the work stays yours and is easy to build on.",
-  },
+  { q: "Why Curiofold?", a: "Most studios split design and development across different people, or different companies. We do both as one team, so what gets designed is what gets shipped and you never have to coordinate between vendors." },
+  { q: "Who will we work with?", a: "The people doing the work. You get one point of contact who runs the project, and direct access to the designers and engineers on it." },
+  { q: "How do we work together?", a: "In a shared channel with a weekly demo. You see real progress every week, give feedback at set points, and always know what is happening next." },
+  { q: "Do you offer full-stack engineering?", a: "Yes. We build front ends, APIs, databases and integrations, and we are just as happy to hand designs to your own engineers and support them through the build." },
+  { q: "What if priorities change?", a: "They usually do. Work is planned in short cycles, so we can re-order what comes next without derailing the project. Larger changes get a quick, written re-scope." },
+  { q: "Can you work with our team?", a: "Yes. We regularly plug into in-house designers and engineers, use your repositories and tools, and follow your release process." },
+  { q: "Who owns the work?", a: "You do. Design files, source code, assets and documentation are all handed over, with nothing locked behind us." },
 ];
+
+// Options offered in the project brief on /contact.
+export const brief = {
+  needs: ["Branding", "Product UI/UX", "Engineering", "Landing page", "Full website", "Motion and video", "Not sure yet"],
+  timelines: ["As soon as possible", "2 to 4 weeks", "1 to 2 months", "Flexible"],
+};

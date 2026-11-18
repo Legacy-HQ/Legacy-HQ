@@ -16,8 +16,8 @@ export function Mark({ className = "" }: { className?: string }) {
 export function Logo({ className = "" }: { className?: string }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <Mark className="h-7 w-7" />
-      <span className="text-[1.15rem] font-semibold tracking-tight">{site.name}</span>
+      <Mark className="mark-live h-7 w-7" />
+      <span className="display text-[1.3rem] !tracking-[-0.045em]">{site.name}</span>
     </span>
   );
 }

@@ -1,6 +1,7 @@
 # Curiofold
 
-Website for Curiofold, a creative studio for motion design, graphic design and video editing.
+Website for Curiofold, a design and engineering studio: branding, product UI/UX,
+full-stack product engineering, landing pages, websites, and motion.
 Built with Next.js (App Router), TypeScript and Tailwind CSS.
 
 ```bash
@@ -11,8 +12,8 @@ pnpm build
 
 ## Pages
 
-- `/` — home: hero, reel, services, selected work, formats, process, engagement options, FAQ
-- `/work` — all projects, filterable by craft
+- `/` — hero, services, figures, project spotlights, comparison, process, tech stack, pilot week, FAQ
+- `/work` — all projects, filterable
 - `/work/<slug>` — one page per project
 - `/contact` — brief builder that opens a pre-filled email (no backend)
 
@@ -20,7 +21,8 @@ pnpm build
 
 - `lib/content.ts` — all copy and project data. Entries marked `PLACEHOLDER` need real studio details.
 - `lib/mark.ts` — the logo as vector paths, traced from the brand artwork. `components/Logo.tsx` renders it.
-- `app/globals.css` — brand palette (`--cf-*` tokens) and all motion: intro, petal corners, fold, reel.
-- `components/Planes.tsx` — the dark banner geometry used behind dark sections.
-- `components/Work.tsx`, `components/Frames.tsx` — drawn visuals for the concept projects. Replace with real stills or video when available.
-- `app/icon.svg`, `app/apple-icon.png`, `app/opengraph-image.png`, `public/curiofold-mark.svg` — logo assets.
+- `app/globals.css` — brand palette (`--cf-*`), light/dark zone tokens and all motion.
+- `components/Sections.tsx` — the home page sections.
+- `components/Iso.tsx` — isometric illustrations on the service cards.
+- `components/Mock.tsx` — project visuals drawn as interface markup. Swap for real screenshots when available.
+- `components/Split.tsx` — the wireframe/shipped slider in the hero.
