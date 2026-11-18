@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Brand tokens. Change --accent (and the paper/ink pair) to re-skin the whole site. */
 :root {
   /* Curiofold brand palette */
   --cf-matte-obsidian: #0f0f0f;
@@ -21,12 +20,16 @@
   --accent: var(--ink);
   --line: color-mix(in srgb, var(--cf-deep-ink) 16%, transparent);
   --line-inv: color-mix(in srgb, var(--cf-alabaster-white) 16%, transparent);
+  /* Hero entrances wait for the intro; Intro.tsx zeroes this once it has played. */
+  --intro: 1250ms;
 }
 
 /* Dark surfaces: light text and emphasis switch to alabaster */
 .zone-dark {
   --paper: var(--cf-alabaster-white);
   --accent: var(--cf-alabaster-white);
+  --muted: #9a9a92;
+  color: var(--cf-alabaster-white);
 }
 
 @theme inline {
@@ -34,6 +37,8 @@
   --color-paper-2: var(--paper-2);
   --color-ink: var(--ink);
   --color-ink-2: var(--ink-2);
+  --color-void: var(--cf-void-obsidian);
+  --color-slate: var(--cf-deep-slate);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-line: var(--line);
@@ -44,10 +49,15 @@
   --ease-fold: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-@property --c {
-  syntax: "<length>";
-  inherits: true;
-  initial-value: 0px;
+@property --sec {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+@property --frm {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
 }
 
 html {
@@ -68,7 +78,7 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid currentColor;
   outline-offset: 3px;
 }
 
@@ -91,6 +101,17 @@ body {
   font-weight: 400;
   line-height: 0.95;
   letter-spacing: -0.02em;
+}
+
+/* Small petal used as a bullet, echoing one lobe of the mark */
+.pip {
+  display: inline-block;
+  width: 0.62em;
+  height: 0.62em;
+  margin-right: 0.55em;
+  background: currentColor;
+  border-radius: 0 70% 0 70%;
+  flex: none;
 }
 
 /* Paper grain over the whole page */
@@ -127,33 +148,24 @@ body {
   }
 }
 
-/* Dog-ear: the corner folds over on hover. Used on buttons and cards. */
-.ear {
-  position: relative;
-  clip-path: polygon(0 0, calc(100% - var(--c)) 0, 100% var(--c), 100% 100%, 0 100%);
-  transition: --c 0.35s var(--ease-fold);
+/* Petal corners: two opposite corners are rounded like the lobes of the mark,
+   and swap to the other diagonal on hover. */
+.leaf {
+  --r: var(--leaf-size, 1.15rem);
+  border-radius: 0 var(--r) 0 var(--r);
+  transition: border-radius 0.6s var(--ease-fold);
 }
-.ear::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: var(--c);
-  height: var(--c);
-  background: var(--ear, #8d8c84);
-  clip-path: polygon(0 0, 0 100%, 100% 100%);
-}
-.ear:hover,
-.ear:focus-visible,
-.group:hover .ear-group {
-  --c: var(--ear-size, 14px);
+.leaf:hover,
+.leaf:focus-visible,
+.group:hover .leaf-group {
+  border-radius: var(--r) 0 var(--r) 0;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.95rem 1.4rem;
+  padding: 0.95rem 1.5rem;
   font-weight: 500;
   font-size: 0.95rem;
   line-height: 1;
@@ -161,13 +173,11 @@ body {
 }
 .btn-ink {
   background: var(--ink);
-  color: var(--paper);
-  --ear: #8d8c84;
+  color: var(--cf-alabaster-white);
 }
 .btn-accent {
-  background: var(--accent);
-  color: var(--ink);
-  --ear: #8d8c84;
+  background: var(--cf-alabaster-white);
+  color: var(--cf-deep-ink);
 }
 .btn-line {
   box-shadow: inset 0 0 0 1px currentColor;
@@ -193,7 +203,7 @@ body {
   transform: none;
 }
 
-/* Hero headline lines rise out of a mask on load */
+/* Headline lines rise out of a mask on load */
 .line {
   display: block;
   overflow: hidden;
@@ -204,7 +214,7 @@ body {
   display: block;
   transform: translateY(110%);
   animation: rise 1.1s var(--ease-fold) forwards;
-  animation-delay: var(--d, 0ms);
+  animation-delay: calc(var(--d, 0ms) + var(--intro, 0ms));
 }
 @keyframes rise {
   to {
@@ -214,7 +224,7 @@ body {
 .fade-up {
   opacity: 0;
   animation: fade-up 1s var(--ease-fold) forwards;
-  animation-delay: var(--d, 0ms);
+  animation-delay: calc(var(--d, 0ms) + var(--intro, 0ms));
 }
 @keyframes fade-up {
   from {
@@ -227,7 +237,81 @@ body {
   }
 }
 
-/* ---------- The folded sheet ---------- */
+/* ---------- The mark ---------- */
+.mark path {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+}
+.mp-tl {
+  --ux: -1;
+  --uy: -1;
+}
+.mp-tr {
+  --ux: 1;
+  --uy: -1;
+}
+.mp-bl {
+  --ux: -1;
+  --uy: 1;
+}
+.mp-br {
+  --ux: 1;
+  --uy: 1;
+}
+
+/* Intro: the four pieces close into the mark, then the curtain lifts */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  background: var(--cf-matte-obsidian);
+  color: var(--cf-warm-ivory);
+  pointer-events: none;
+  animation: intro-lift 0.8s cubic-bezier(0.7, 0, 0.2, 1) 1s forwards;
+}
+.intro .mark {
+  width: min(22vw, 7.5rem);
+  overflow: visible;
+  animation: intro-turn 1s var(--ease-fold) both;
+}
+.intro .mark path {
+  animation: intro-close 0.9s var(--ease-fold) both;
+}
+@keyframes intro-close {
+  from {
+    opacity: 0;
+    transform: translate(calc(var(--ux) * 26px), calc(var(--uy) * 26px));
+  }
+}
+@keyframes intro-turn {
+  from {
+    transform: rotate(-90deg);
+  }
+}
+@keyframes intro-lift {
+  to {
+    transform: translateY(-100%);
+    visibility: hidden;
+  }
+}
+
+/* Hero mark: pieces part with the pointer, the whole turns with scroll */
+.hero-mark {
+  --spread: 0;
+  --rot: 0;
+}
+.hero-mark .mark {
+  overflow: visible;
+  transform: rotate(calc(var(--rot) * 1deg));
+  will-change: transform;
+}
+.hero-mark .mark path {
+  transform: translate(calc(var(--ux) * var(--spread) * 1px), calc(var(--uy) * var(--spread) * 1px));
+}
+
+/* ---------- The folded sheet (hero reel) ---------- */
 .fold {
   --fold: 0.5;
   --px: 0;
@@ -270,7 +354,7 @@ body {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: var(--cf-architectural-charcoal);
+  background: var(--cf-void-obsidian);
   /* hairline overlap hides seams between panels */
   margin-right: -0.5px;
 }
@@ -291,16 +375,10 @@ body {
   opacity: calc(var(--fold) * 2);
 }
 [data-dir="in"] > .fold-face > .fold-shade {
-  background: linear-gradient(90deg, rgb(10 16 16 / 0.55), rgb(5 11 11 / 0.92));
+  background: linear-gradient(90deg, rgb(5 11 11 / 0.2), rgb(5 11 11 / 0.85));
 }
 [data-dir="out"] > .fold-face > .fold-shade {
-  background: linear-gradient(90deg, rgb(245 243 238 / 0.1), rgb(245 243 238 / 0));
-}
-.fold-face::after {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  border-left: 1px dashed rgb(245 243 238 / 0.22);
+  background: linear-gradient(90deg, rgb(245 243 238 / 0.07), rgb(245 243 238 / 0));
 }
 .fold-shadow {
   position: absolute;
@@ -308,31 +386,16 @@ body {
   right: 8%;
   bottom: -6%;
   height: 14%;
-  background: radial-gradient(closest-side, rgb(20 18 14 / 0.35), transparent);
+  background: radial-gradient(closest-side, rgb(5 11 11 / 0.45), transparent);
   filter: blur(18px);
   opacity: calc(0.35 + var(--fold) * 0.5);
   transform: scaleX(calc(1 - var(--fold) * 0.25));
 }
-.art-word {
-  font-family: var(--font-instrument-serif), serif;
-  font-style: italic;
-  font-size: 12.6cqw;
-  line-height: 0.85;
-  letter-spacing: -0.03em;
-  white-space: nowrap;
-}
-.art-word br {
-  display: none;
-}
 .art-small {
   font-family: var(--font-geist-mono), monospace;
-  font-size: max(0.85cqw, 8px);
+  font-size: max(0.82cqw, 8px);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-}
-.art-chip {
-  height: 5.2cqw;
-  min-height: 26px;
 }
 @media (max-width: 767px) {
   .fold {
@@ -341,21 +404,80 @@ body {
   .fold-sheet {
     aspect-ratio: 5 / 4;
   }
-  .art-word {
-    font-size: 25cqw;
-    white-space: normal;
-  }
-  .art-word br {
-    display: inline;
-  }
   .art-small {
     font-size: 2.4cqw;
   }
-  .art-chip {
-    height: 11cqw;
-  }
   .art-hide-sm {
     display: none !important;
+  }
+}
+
+/* Reel loop. The mark has 180° symmetry, so a half turn loops seamlessly. */
+.reel .mark {
+  overflow: visible;
+  animation: reel-turn 8s cubic-bezier(0.7, 0, 0.2, 1) infinite;
+}
+.reel .mark path {
+  animation: reel-part 8s cubic-bezier(0.7, 0, 0.2, 1) infinite;
+}
+@keyframes reel-turn {
+  0%,
+  18% {
+    transform: rotate(0);
+  }
+  50%,
+  68% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@keyframes reel-part {
+  0%,
+  18%,
+  50%,
+  68%,
+  100% {
+    transform: none;
+  }
+  34%,
+  84% {
+    transform: translate(calc(var(--ux) * 9px), calc(var(--uy) * 9px));
+  }
+}
+.timecode::after {
+  counter-reset: sec var(--sec) frm var(--frm);
+  content: "00:00:" counter(sec, decimal-leading-zero) ":" counter(frm, decimal-leading-zero);
+  animation:
+    tc-sec 8s steps(8, jump-none) infinite,
+    tc-frm 1s steps(24, jump-none) infinite;
+}
+@keyframes tc-sec {
+  to {
+    --sec: 7;
+  }
+}
+@keyframes tc-frm {
+  to {
+    --frm: 23;
+  }
+}
+.reel-bar {
+  transform-origin: left;
+  animation: reel-bar 8s linear infinite;
+}
+@keyframes reel-bar {
+  from {
+    transform: scaleX(0);
+  }
+}
+.blink {
+  animation: blink 1.2s steps(2, jump-none) infinite;
+}
+@keyframes blink {
+  to {
+    opacity: 0.15;
   }
 }
 
@@ -406,16 +528,11 @@ body {
   opacity: 1;
 }
 .svc-name {
-  transition:
-    transform 0.5s var(--ease-fold),
-    color 0.3s ease;
+  transition: transform 0.5s var(--ease-fold);
 }
 .svc:hover .svc-name,
 .svc[data-open="true"] .svc-name {
   transform: translateX(0.6rem);
-}
-.svc[data-open="true"] .svc-name {
-  color: var(--accent);
 }
 .svc-plus {
   transition: transform 0.5s var(--ease-fold);
@@ -423,11 +540,22 @@ body {
 .svc[data-open="true"] .svc-plus {
   transform: rotate(45deg);
 }
+/* Service demos */
+.kern span {
+  display: inline-block;
+  animation: kern 3.2s var(--ease-fold) infinite alternate;
+  animation-delay: calc(var(--i) * 0.12s);
+}
+@keyframes kern {
+  to {
+    transform: translateX(calc((var(--i) - 1.5) * 0.14em));
+  }
+}
 
 /* Work cards */
 .card {
-  --ear-size: 44px;
-  --ear: #8d8c84;
+  --leaf-size: clamp(2rem, 5vw, 4.5rem);
+  overflow: hidden;
 }
 .tone-ink {
   background: var(--cf-matte-obsidian);
@@ -443,13 +571,13 @@ body {
 }
 .tone-ivory {
   background: var(--cf-warm-ivory);
-  color: var(--ink);
+  color: var(--cf-deep-ink);
   --card-line: var(--line);
   --card-soft: var(--cf-warm-limestone);
 }
 .tone-bone {
   background: var(--cf-alabaster-white);
-  color: var(--ink);
+  color: var(--cf-deep-ink);
   --card-line: var(--line);
   --card-soft: var(--cf-warm-limestone);
 }
@@ -489,15 +617,52 @@ body {
 .draw.in {
   stroke-dashoffset: 0;
 }
-.bar {
-  transform-origin: bottom;
-  animation: breathe 3.2s ease-in-out infinite;
-  animation-delay: calc(var(--i) * -0.4s);
+
+/* Formats: one frame morphing between aspect ratios */
+.format-frame {
+  transition:
+    width 0.9s var(--ease-fold),
+    height 0.9s var(--ease-fold),
+    border-radius 0.9s var(--ease-fold);
 }
-@keyframes breathe {
-  50% {
-    transform: scaleY(0.6);
-  }
+
+/* Chips used in filters and the brief builder */
+.chip {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.7rem 1rem;
+  box-shadow: inset 0 0 0 1px var(--line);
+  border-radius: 0 0.8rem 0 0.8rem;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-radius 0.5s var(--ease-fold);
+  cursor: pointer;
+}
+.chip:hover {
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+.chip[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--cf-alabaster-white);
+  border-radius: 0.8rem 0 0.8rem 0;
+}
+.field {
+  width: 100%;
+  background: transparent;
+  border-bottom: 1px solid var(--line);
+  padding: 0.9rem 0;
+  font-size: 1.1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.field:focus {
+  border-color: var(--ink);
+}
+.field::placeholder {
+  color: color-mix(in srgb, var(--muted) 70%, transparent);
 }
 
 /* FAQ */
@@ -519,6 +684,9 @@ details[open] .faq-a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  :root {
+    --intro: 0ms;
+  }
   html {
     scroll-behavior: auto;
   }
@@ -526,8 +694,12 @@ details[open] .faq-a {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  .intro {
+    display: none;
   }
   .reveal {
     opacity: 1;

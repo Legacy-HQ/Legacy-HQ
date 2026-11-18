@@ -1,47 +1,42 @@
 "use client";
 
 import { useEffect, useRef, type CSSProperties } from "react";
+import { Mark } from "./Logo";
+import { Planes } from "./Planes";
 
 const MAX_PANELS = 6;
 
+// What is printed on the sheet: a looping motion study of the mark, framed like a reel.
+// It is rendered once per panel, so everything here is CSS-animated to stay in sync.
 function SheetArt() {
   return (
-    <div className="flex h-full flex-col justify-between p-[2.4cqw]">
-      <div className="art-small flex items-start justify-between">
-        <span>CF—001 / Crease pattern</span>
-        <span className="art-hide-sm">Mountain ——— &nbsp; Valley - - -</span>
-        <span>Sheet 1 of 1</span>
+    <div className="reel relative h-full">
+      <Planes />
+      <div className="absolute inset-0 grid place-items-center">
+        <Mark className="h-[52cqh] w-[52cqh]" />
       </div>
-      <p className="art-word">
-        curiosity, <br />
-        folded.
-      </p>
-      <div className="flex items-end justify-between gap-[2cqw]">
-        <div className="flex items-end gap-[1.2cqw]">
-          <div className="art-chip flex">
-            <span className="aspect-square h-full bg-[#f5f3ee]" />
-            <span className="aspect-square h-full bg-paper" />
-            <span className="aspect-square h-full bg-[#050b0b]" />
+      <div className="relative flex h-full flex-col justify-between p-[2.2cqw]">
+        <div className="art-small flex items-start justify-between">
+          <span>Curiofold — Motion study 01</span>
+          <span className="flex items-center gap-[0.6em]">
+            <span className="blink inline-block h-[0.7em] w-[0.7em] rounded-full bg-current" />
+            Live
+          </span>
+        </div>
+        <div>
+          <div className="art-small flex items-end justify-between">
+            <span className="art-hide-sm">Motion × Graphics × Edit</span>
+            <span className="timecode tabular-nums" />
           </div>
-          <div className="art-chip art-hide-sm flex items-center bg-paper px-[1.4cqw] font-serif text-ink text-[3cqw] leading-none">
-            Aa
-          </div>
-          <div className="art-chip art-hide-sm flex items-center gap-[0.8cqw] bg-[#f5f3ee] px-[1.6cqw] text-[1.1cqw] font-medium text-ink">
-            Play reel <span>▶</span>
+          <div className="mt-[1.2cqw] h-px bg-current/20">
+            <div className="reel-bar h-full bg-current" />
           </div>
         </div>
-        <svg viewBox="0 0 200 60" className="art-hide-sm h-[5.2cqw] w-auto" fill="none" stroke="currentColor">
-          <path d="M0 50 33 14l34 32 33-36 33 36 34-30 33 34" strokeWidth="1.5" />
-          <path d="M33 0v60M100 0v60M167 0v60" strokeDasharray="3 4" strokeWidth="1" opacity=".5" />
-        </svg>
-        <span className="art-small text-right">
-          Motion × Graphics
-          <br />× Edit
-        </span>
       </div>
     </div>
   );
 }
+
 
 function Panel({ i }: { i: number }) {
   if (i >= MAX_PANELS) return null;

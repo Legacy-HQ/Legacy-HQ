@@ -7,7 +7,7 @@ export function Process() {
       <div className="wrap">
         <Reveal className="grid gap-6 md:grid-cols-12 md:items-end">
           <p className="label text-muted md:col-span-3">
-            <span className="text-accent">◢</span> Process
+            <span className="pip" /> Process
           </p>
           <h2 className="display text-[clamp(2.8rem,7vw,6.5rem)] md:col-span-9">
             Every project follows <em>a crease pattern.</em>
@@ -68,7 +68,7 @@ export function Engage() {
     <section id="engage" className="wrap py-24 md:py-36">
       <Reveal className="grid gap-6 md:grid-cols-12 md:items-end">
         <p className="label text-muted md:col-span-3">
-          <span className="text-accent">◢</span> Ways to work together
+          <span className="pip" /> Ways to work together
         </p>
         <h2 className="display text-[clamp(2.8rem,7vw,6.5rem)] md:col-span-9">
           Start small. <em>Or don&rsquo;t.</em>
@@ -79,7 +79,7 @@ export function Engage() {
         {engagements.map((item, i) => (
           <Reveal key={item.name} delay={i * 90} className="h-full">
             <div
-              className={`ear group flex h-full flex-col p-8 [--ear-size:36px] ${
+              className={`leaf group flex h-full flex-col p-8 [--leaf-size:36px] ${
                 item.featured ? "zone-dark bg-ink text-paper" : "border border-line"
               }`}
             >
@@ -92,12 +92,12 @@ export function Engage() {
               <ul className="mt-8 space-y-3 border-t border-current/15 pt-6 text-sm">
                 {item.points.map((point) => (
                   <li key={point} className="flex gap-3">
-                    <span className="text-accent">◢</span>
+                    <span className="pip" />
                     {point}
                   </li>
                 ))}
               </ul>
-              <a href="#contact" className="label mt-auto inline-flex items-center gap-2 pt-10 transition-opacity hover:opacity-60">
+              <a href="/contact" className="label mt-auto inline-flex items-center gap-2 pt-10 transition-opacity hover:opacity-60">
                 Talk about this <span aria-hidden="true">↗</span>
               </a>
             </div>
@@ -114,7 +114,7 @@ export function Faq() {
       <div className="grid gap-10 border-t border-line pt-16 md:grid-cols-12">
         <Reveal className="md:col-span-4">
           <p className="label text-muted">
-            <span className="text-accent">◢</span> FAQ
+            <span className="pip" /> FAQ
           </p>
           <h2 className="display mt-6 text-[clamp(2.6rem,5vw,4.5rem)]">
             Fair <em>questions.</em>

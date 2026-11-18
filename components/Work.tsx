@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import Link from "next/link";
 import { work } from "@/lib/content";
 import { Reveal } from "./Reveal";
 
@@ -140,7 +141,7 @@ function Moth() {
   );
 }
 
-const visuals: Record<Slug, () => React.JSX.Element> = {
+export const visuals: Record<Slug, () => React.JSX.Element> = {
   orrery: Orrery,
   tessel: Tessel,
   halcyon: Halcyon,
@@ -152,7 +153,7 @@ export function Work() {
     <section id="work" className="wrap py-24 md:py-36">
       <Reveal className="grid gap-6 md:grid-cols-12 md:items-end">
         <p className="label text-muted md:col-span-3">
-          <span className="text-accent">◢</span> Selected work
+          <span className="pip" /> Selected work
         </p>
         <div className="md:col-span-9">
           <h2 className="display text-[clamp(2.8rem,7vw,6.5rem)]">
@@ -173,8 +174,9 @@ export function Work() {
               className="group mb-6 last:mb-0 md:sticky md:top-[calc(5.5rem+var(--i)*0.9rem)]"
               style={{ "--i": i } as CSSProperties}
             >
-              <div
-                className={`card ear ear-group tone-${project.tone} grid min-h-[30rem] md:min-h-[34rem] md:grid-cols-12`}
+              <Link
+                href={`/work/${project.slug}`}
+                className={`card leaf leaf-group tone-${project.tone} grid min-h-[30rem] md:min-h-[34rem] md:grid-cols-12`}
               >
                 <div className="flex flex-col justify-between gap-10 p-7 md:col-span-5 md:p-10">
                   <div className="label flex items-center justify-between opacity-60">
@@ -194,6 +196,10 @@ export function Work() {
                         </li>
                       ))}
                     </ul>
+                    <p className="label mt-8 flex items-center gap-2">
+                      View project
+                      <span className="transition-transform duration-500 ease-fold group-hover:translate-x-1.5">→</span>
+                    </p>
                   </div>
                 </div>
                 <div
@@ -202,10 +208,15 @@ export function Work() {
                 >
                   <Visual />
                 </div>
-              </div>
+              </Link>
             </article>
           );
         })}
+      </div>
+      <div className="mt-12 flex justify-center">
+        <Link href="/work" className="btn btn-line leaf">
+          See all work <span className="arrow">↗</span>
+        </Link>
       </div>
     </section>
   );

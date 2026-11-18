@@ -2,20 +2,76 @@
 
 import { useState } from "react";
 import { services } from "@/lib/content";
+import { Planes } from "./Planes";
 import { Reveal } from "./Reveal";
+
+// A small live demo for each craft, shown when its row is open.
+function Demo({ index }: { index: number }) {
+  if (index === 0) {
+    return (
+      <svg viewBox="0 0 100 100" className="h-full w-full" fill="none" stroke="currentColor">
+        <path d="M10 0v100M90 0v100M0 10h100M0 90h100" strokeOpacity=".15" />
+        <path d="M10 90C45 90 55 10 90 10" strokeOpacity=".5" />
+        <circle r="5" fill="currentColor" stroke="none">
+          <animateMotion
+            dur="3.2s"
+            repeatCount="indefinite"
+            path="M10 90C45 90 55 10 90 10"
+            calcMode="spline"
+            keyTimes="0;0.5;1"
+            keyPoints="0;1;0"
+            keySplines=".7 0 .2 1;.7 0 .2 1"
+          />
+        </circle>
+      </svg>
+    );
+  }
+  if (index === 1) {
+    return (
+      <div className="relative grid h-full place-items-center">
+        <div className="absolute inset-x-0 top-[30%] border-t border-current/15" />
+        <div className="absolute inset-x-0 top-[70%] border-t border-current/15" />
+        <p className="kern display text-5xl">
+          {"Fold".split("").map((letter, i) => (
+            <span key={i} style={{ "--i": i } as React.CSSProperties}>
+              {letter}
+            </span>
+          ))}
+        </p>
+      </div>
+    );
+  }
+  return (
+    <div className="relative flex h-full flex-col justify-center gap-1.5">
+      {[
+        [30, 22, 40],
+        [18, 50, 24],
+        [62, 30],
+      ].map((clips, t) => (
+        <div key={t} className="flex h-4 gap-1">
+          {clips.map((w, c) => (
+            <span key={c} className="bg-current" style={{ width: `${w}%`, opacity: [0.8, 0.3, 0.55][(c + t) % 3] }} />
+          ))}
+        </div>
+      ))}
+      <span className="playhead absolute inset-y-3 w-px bg-current" />
+    </div>
+  );
+}
 
 export function Services() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section id="services" className="zone-dark bg-ink py-24 text-paper md:py-36">
-      <div className="wrap">
+    <section id="services" className="zone-dark relative overflow-hidden bg-void py-24 md:py-36">
+      <Planes className="opacity-70" />
+      <div className="wrap relative">
         <Reveal className="grid gap-6 md:grid-cols-12 md:items-end">
-          <p className="label text-paper/50 md:col-span-3">
-            <span className="text-accent">◢</span> Services
+          <p className="label flex items-center text-paper/50 md:col-span-3">
+            <span className="pip" /> Services
           </p>
           <h2 className="display text-[clamp(2.8rem,7vw,6.5rem)] md:col-span-9">
-            Three folds, <em className="text-accent">one sheet.</em>
+            Three crafts, <em>one fold.</em>
           </h2>
         </Reveal>
 
@@ -46,7 +102,12 @@ export function Services() {
                   <div id={`svc-${i}`} className="svc-body" role="region" aria-label={service.name}>
                     <div className="svc-inner">
                       <div className="svc-flap grid grid-cols-12 gap-4 pb-10">
-                        <div className="col-span-12 md:col-span-5 md:col-start-4">
+                        <div className="col-span-3 hidden md:block" aria-hidden="true">
+                          <div className="h-36 w-36 rounded-[0_2rem_0_2rem] border border-line-inv p-4 text-paper">
+                            <Demo index={i} />
+                          </div>
+                        </div>
+                        <div className="col-span-12 md:col-span-5">
                           <p className="mb-3 text-paper/55 md:hidden">{service.summary}</p>
                           <p className="max-w-xl text-lg leading-relaxed text-paper/80">{service.body}</p>
                         </div>

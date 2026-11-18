@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Footer } from "@/components/Footer";
+import { Intro } from "@/components/Intro";
+import { Nav } from "@/components/Nav";
 import { site } from "@/lib/content";
 import "./globals.css";
 
@@ -21,11 +24,14 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: `${site.name} — ${site.tagline}`,
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name} — ${site.tagline}`,
+    template: `%s — ${site.name}`,
+  },
   description: site.description,
   openGraph: {
-    title: `${site.name} — ${site.tagline}`,
-    description: site.description,
+    siteName: site.name,
     type: "website",
   },
 };
@@ -44,7 +50,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <noscript>
           <style>{`.reveal{opacity:1;transform:none}.ink-word{opacity:1}`}</style>
         </noscript>
-        {children}
+        <Intro />
+        <div className="progress" aria-hidden="true" />
+        <div className="grain" aria-hidden="true" />
+        <Nav />
+        <div id="top">{children}</div>
+        <Footer />
       </body>
     </html>
   );

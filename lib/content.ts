@@ -8,6 +8,8 @@ export const site = {
     "Curiofold is a creative studio for motion design, graphic design and video editing. We fold ideas into things that move.",
   // PLACEHOLDER: confirm the real contact address and social links.
   email: "hello@curiofold.com",
+  // PLACEHOLDER: the live domain, used for link previews.
+  url: "https://curiofold.com",
   socials: [
     { label: "Instagram", href: "#" },
     { label: "YouTube", href: "#" },
@@ -17,11 +19,11 @@ export const site = {
 };
 
 export const nav = [
-  { label: "Work", href: "#work" },
-  { label: "Services", href: "#services" },
-  { label: "Process", href: "#process" },
-  { label: "Engage", href: "#engage" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Work", href: "/work" },
+  { label: "Services", href: "/#services" },
+  { label: "Process", href: "/#process" },
+  { label: "Engage", href: "/#engage" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const marquee = [
@@ -60,44 +62,144 @@ export const services = [
 ];
 
 // PLACEHOLDER: studio concept pieces. Replace with real projects (and real footage).
+// Each entry drives a card on the home page, a tile on /work and a full page at /work/<slug>.
 export const work = [
   {
     slug: "orrery",
     name: "Orrery",
     kind: "Motion identity",
+    craft: "Motion",
     blurb:
       "A logo that never sits still. One mark built from orbits, animated into a full system of idents, loops and transitions.",
     tags: ["Motion design", "Logo animation", "Brand"],
     tone: "ink",
+    specs: [
+      { k: "Format", v: "Idents, loops, transitions" },
+      { k: "Length", v: "6 second master loop" },
+      { k: "Delivered as", v: "16:9, 9:16, 1:1 and Lottie" },
+    ],
+    story: [
+      {
+        title: "Wonder",
+        body: "What if a logo behaved like the thing it is named after? An orrery is a model of orbits, so the mark should keep time rather than sit still.",
+      },
+      {
+        title: "Crease",
+        body: "Three rings, three speeds, one fixed centre. We set the ratios first so every loop lands back on the resting mark without a visible cut.",
+      },
+      {
+        title: "Fold",
+        body: "The same motion became the system: a six second ident, a looping avatar, and wipes that use the rings to move from one scene to the next.",
+      },
+    ],
+    deliverables: ["Animated logo", "Ident and sting", "Looping avatar", "Transition pack", "Motion guidelines"],
   },
   {
     slug: "tessel",
     name: "Tessel",
     kind: "Poster series",
+    craft: "Graphic",
     blurb:
       "Three shapes, one strict grid and no colour at all. A print series that proves how far a small set of rules can go.",
     tags: ["Graphic design", "Print", "Type"],
     tone: "ivory",
+    specs: [
+      { k: "Format", v: "Poster series of three" },
+      { k: "Size", v: "50 × 70 cm, plus social crops" },
+      { k: "Delivered as", v: "Print-ready PDF and templates" },
+    ],
+    story: [
+      {
+        title: "Wonder",
+        body: "How little do you need for a set of posters to feel like a family? We removed colour, photography and illustration to find out.",
+      },
+      {
+        title: "Crease",
+        body: "A five by seven grid, one serif, and three shapes: a disc, a folded sheet and a stack of bars. Every poster uses the same margins and the same baseline.",
+      },
+      {
+        title: "Fold",
+        body: "Each poster swaps figure and ground, so the three read as a sequence on a wall and still hold up alone as a square crop in a feed.",
+      },
+    ],
+    deliverables: ["Three posters", "Type and grid system", "Social crops", "Editable templates"],
   },
   {
     slug: "halcyon",
     name: "Halcyon",
     kind: "Brand film edit",
+    craft: "Edit",
     blurb:
       "Ninety seconds cut from hours of footage. Paced to the music, graded to a single mood and finished with sound that carries it.",
     tags: ["Video editing", "Colour", "Sound design"],
     tone: "slate",
+    specs: [
+      { k: "Format", v: "Brand film with cutdowns" },
+      { k: "Length", v: "90 seconds, plus 30 and 15" },
+      { k: "Delivered as", v: "16:9 master, 9:16 and 1:1 cuts" },
+    ],
+    story: [
+      {
+        title: "Wonder",
+        body: "Hours of good footage is a harder brief than too little. The question was what the film is about once everything pretty has been removed.",
+      },
+      {
+        title: "Crease",
+        body: "We built the cut on paper first: one line of story, a music map marking every beat, and a short list of shots that had earned their place.",
+      },
+      {
+        title: "Fold",
+        body: "The edit breathes with the track, the grade holds one cool, quiet mood from first frame to last, and the sound design fills the space between cuts.",
+      },
+    ],
+    deliverables: ["Master edit", "Short cutdowns", "Colour grade", "Sound design and mix", "Captions"],
   },
   {
     slug: "moth",
     name: "Moth",
     kind: "Title sequence",
+    craft: "Motion",
     blurb:
       "An opening sequence told in light and shadow. Storyboarded frame by frame, then animated with type that drifts like its namesake.",
     tags: ["Motion design", "Storyboard", "Kinetic type"],
     tone: "bone",
+    specs: [
+      { k: "Format", v: "Opening title sequence" },
+      { k: "Length", v: "45 seconds at 24 fps" },
+      { k: "Delivered as", v: "ProRes master with type layers" },
+    ],
+    story: [
+      {
+        title: "Wonder",
+        body: "A title sequence sets the temperature of everything after it. This one needed to feel like the last hour of daylight.",
+      },
+      {
+        title: "Crease",
+        body: "Twelve storyboard frames, each built around a single source of light. The type was drawn to appear a letter at a time, pulled toward that light.",
+      },
+      {
+        title: "Fold",
+        body: "Animated at 24 frames with slow, uneven easing so nothing moves mechanically. The title arrives last, and stays just long enough.",
+      },
+    ],
+    deliverables: ["Storyboard", "Styleframes", "Animated sequence", "Title card", "Type toolkit"],
   },
 ] as const;
+
+export type Project = (typeof work)[number];
+
+export const formats = [
+  { id: "16:9", ratio: 16 / 9, where: "YouTube, web, screens" },
+  { id: "9:16", ratio: 9 / 16, where: "Reels, Shorts, TikTok" },
+  { id: "1:1", ratio: 1, where: "Feed posts, covers" },
+  { id: "4:5", ratio: 4 / 5, where: "Feed, paid social" },
+] as const;
+
+// Options offered in the project brief on /contact.
+export const brief = {
+  needs: ["Motion design", "Graphic design", "Video editing", "Not sure yet"],
+  timelines: ["As soon as possible", "2 to 4 weeks", "1 to 2 months", "Flexible"],
+};
 
 export const process = [
   {

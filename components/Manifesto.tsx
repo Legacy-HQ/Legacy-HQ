@@ -36,7 +36,7 @@ export function Manifesto() {
     <section className="wrap py-28 md:py-44">
       <div className="grid gap-8 md:grid-cols-12">
         <p className="label text-muted md:col-span-3">
-          <span className="text-accent">◢</span> Why we exist
+          <span className="pip" /> Why we exist
         </p>
         <p
           ref={ref}
