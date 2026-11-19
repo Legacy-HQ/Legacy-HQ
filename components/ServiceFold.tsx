@@ -8,21 +8,32 @@ import { Plate } from "./Plate";
 // flat; the rest fold back to narrow spines. On small screens it becomes a vertical accordion.
 export function ServiceFold() {
   const [active, setActive] = useState(0);
+  // Below this width the panels stack into an accordion, where a tap toggles a panel.
+  const stacked = () => window.matchMedia("(max-width: 1023px)").matches;
 
   return (
     <div className="fold-row">
       {services.map((service, i) => {
         const open = active === i;
         return (
-          <article key={service.id} className="fold-p" data-open={open} onMouseEnter={() => setActive(i)}>
+          <article
+            key={service.id}
+            className="fold-p"
+            data-open={open}
+            onPointerEnter={(e) => {
+              if (e.pointerType === "mouse" && !stacked()) setActive(i);
+            }}
+          >
             <h3>
               <button
                 type="button"
                 className="fold-head"
                 aria-expanded={open}
                 aria-controls={`fold-${service.id}`}
-                onClick={() => setActive(i)}
-                onFocus={() => setActive(i)}
+                onClick={() => setActive(stacked() && open ? -1 : i)}
+                onFocus={() => {
+                  if (!stacked()) setActive(i);
+                }}
               >
                 <span className="label text-muted">0{i + 1}</span>
                 <span className="fold-title display text-2xl lg:text-[1.65rem]">{service.name}</span>
